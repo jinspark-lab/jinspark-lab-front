@@ -1,0 +1,18 @@
+
+.career-box {
+    text-align: left;
+    color: #2b2b2b;
+    background-color: #f1f1f1;
+    padding: 5px;
+    border: 1px solid #d8d9da;
+}
+
+.career-text {
+    padding: 5px;
+    margin-bottom: 0.25rem !important;
+}
+
+.career-date {
+    padding: 5px;
+    color: #747474;
+}

@@ -1,0 +1,56 @@
+
+.skill-box {
+    width: auto;
+    padding: 1px;
+}
+
+.skill-badge {
+    display: inline-block;
+    font-weight: bold;
+    line-height: 2.5;
+    color: #2b2b2b;
+    background-color: #f1f1f1;
+    border-color: #0d6efd;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 1px solid #f1f1f1;
+    padding: 0.375rem 0.75rem;
+    margin: 4px;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* B: #0d6efd */
+/* R: bc16ec */
+/* G : 0eb88e */
+.skill-name {
+    border: 1px solid transparent;
+    margin: 2px;
+    /* background-color: #bc16ec; */
+    border-radius: 0.4em;
+    color: #0f0f0f;
+    padding: 2px;
+}
+
+.skill-year {
+    border: 1px solid transparent;
+    margin: 5px;
+    background-color: #0d6efd;
+    border-radius: 0.4em;
+    color: #fefefe;
+    padding: 5px;
+}
+
+.skill-proficiency {
+    border: 1px solid transparent;
+    margin: 5px;
+    background-color: #0eb88e;
+    border-radius: 0.4em;
+    color: #fefefe;
+    padding: 5px;
+}
