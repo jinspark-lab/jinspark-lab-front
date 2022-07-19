@@ -1,8 +1,8 @@
 import React from 'react';
 import ItemListContainer from '../components/ItemListContainer';
-import SystemDesignViewContainer from './SystemDesignViewContainer';
 
-const HomePage = () => {
+// TBD
+const ArchitecturePage = () => {
 
     const items = [
         {
@@ -21,9 +21,9 @@ const HomePage = () => {
                 <ItemListContainer inputItems={items}></ItemListContainer>
             </div>
             <div className='col-9'>
-                <SystemDesignViewContainer></SystemDesignViewContainer>
+            ArchitecturePage
             </div>
         </div>
     )
 };
-export default HomePage;
+export default ArchitecturePage;

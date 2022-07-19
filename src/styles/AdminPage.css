@@ -1,0 +1,36 @@
+
+.admin-page {
+    text-align: left;
+}
+
+.admin-form {
+    margin: 10px;
+}
+
+.admin-label {
+    padding: 5px;
+}
+
+.admin-form-button {
+    text-align: right;
+}
+
+.admin-form-range {
+    width: 100%;
+}
+
+.admin-button {
+    margin-right: 10px;
+}
+
+.admin-box {
+    margin: 10px;
+    border: 1px solid #efeffa;
+}
+
+.admin-element-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}

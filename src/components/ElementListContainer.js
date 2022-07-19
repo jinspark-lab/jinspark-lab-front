@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Element from './Element';
 import ElementList from './ElementList';
 
+// Element : Items can be manipulated
 const ElementListContainer = ({ inputElements }) => {
 
     // newItems are same with last time, just use the last elements.

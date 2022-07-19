@@ -15,14 +15,14 @@ const AppMenu = () => {
                         <li className='navbar-item'>
                             <Link to="/" className='nav-link active'>Home</Link>
                         </li>
-                        <li className='navbar-item'>
+                        {/* <li className='navbar-item'>
                             <Link to="/algorithm" className='nav-link active'>Algorithm</Link>
                         </li>
                         <li className='navbar-item'>
                             <Link to="/architecture" className='nav-link active'>Architecture</Link>
-                        </li>
+                        </li> */}
                         <li className='navbar-item'>
-                            <Link to="/project" className='nav-link'>Project</Link>
+                            <Link to="/service" className='nav-link active'>Service</Link>
                         </li>
                         <li className='navbar-item'>
                             <Link to='/admin' className='nav-link'>Admin</Link>

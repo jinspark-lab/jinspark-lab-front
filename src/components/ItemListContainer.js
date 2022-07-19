@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Item from './Item';
 import ItemList from './ItemList';
 
+// Item : Item shows item vertically
 const ItemListContainer = ({ inputItems, onClickHandler }) => {
 
     // newItems are same with last time, just use the last elements.

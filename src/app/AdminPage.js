@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ItemListContainer from '../components/ItemListContainer';
 import EditProfileView from './admin/EditProfileView';
 import EditLabView from './admin/EditLabView';
-import AddAlgorithmView from './admin/AddAlgorithmView';
-import EditAlgorithmView from './admin/EditAlgorithmView';
-import AddArchitectureView from './admin/AddArchitectureView';
-import EditArchitectureView from './admin/EditArchitectureView';
-import AddProjectView from './admin/AddProjectView';
-import EditProjectView from './admin/EditProjectView';
+import AddServiceView from './admin/AddServiceView';
+import EditServiceView from './admin/EditServiceView';
 import SettingsView from './admin/SettingsView';
 
 const AdminPage = () => {
-    const [content, setContent] = useState(null);
     const [menu, setMenu] = useState(0);
 
     // DB Layer ㅁㅏㄴ드ㄹ고, 어드민은 일단 로ㄹ에서만 띄우게 최소화. 로그인 붙이면 그때 퍼블릭
@@ -26,27 +21,11 @@ const AdminPage = () => {
         },
         {
             id: 2,
-            text: 'Add Algorithm'
+            text: 'Add Service'
         },
         {
             id: 3,
-            text: 'Edit/Remove Algorithm'
-        },
-        {
-            id: 4,
-            text: 'Add Architecture'
-        },
-        {
-            id: 5,
-            text: 'Edit/Remove Architecture'
-        },
-        {
-            id: 6,
-            text: 'Add Project'
-        },
-        {
-            id: 7,
-            text: 'Edit/Remove Project'
+            text: 'Edit/Remove Service'
         },
         {
             id: 100,
@@ -58,24 +37,15 @@ const AdminPage = () => {
         setMenu(id);
     };
     const renderContent = () => {
-        console.log(menu);
         switch (menu) {
             case 0:
                 return <EditProfileView></EditProfileView>
             case 1:
                 return <EditLabView></EditLabView>
             case 2:
-                return <AddAlgorithmView></AddAlgorithmView>
+                return <AddServiceView></AddServiceView>
             case 3:
-                return <EditAlgorithmView></EditAlgorithmView>
-            case 4:
-                return <AddArchitectureView></AddArchitectureView>
-            case 5:
-                return <EditArchitectureView></EditArchitectureView>
-            case 6:
-                return <AddProjectView></AddProjectView>
-            case 7:
-                return <EditProjectView></EditProjectView>
+                return <EditServiceView></EditServiceView>
             case 100:
                 return <SettingsView></SettingsView>
         }

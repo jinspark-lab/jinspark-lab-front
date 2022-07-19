@@ -1,18 +1,16 @@
 import React from 'react';
 import ItemListContainer from '../components/ItemListContainer';
-import AlgorithmContentView from './AlgorithmContentView';
 
-// TBD
-const AlgorithmPage = () => {
+const ServicePage = () => {
 
     const items = [
         {
             id: 0,
-            text: 'First Menu'
+            text: 'First Service'
         },
         {
             id: 1,
-            text: 'Second Menu'
+            text: 'Second Service'
         }
     ];
 
@@ -22,9 +20,9 @@ const AlgorithmPage = () => {
                 <ItemListContainer inputItems={items}></ItemListContainer>
             </div>
             <div className='col-9'>
-                <AlgorithmContentView></AlgorithmContentView>
+                Service Page
             </div>
         </div>
     )
 };
-export default AlgorithmPage;
+export default ServicePage;

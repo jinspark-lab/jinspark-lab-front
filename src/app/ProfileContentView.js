@@ -18,8 +18,8 @@ const ProfileContentView = ({userProfile}) => {
                             <h4 className="card-title">{userProfile.name}</h4>
                             <h5 className="card-text">{userProfile.title}</h5>
                             <p className="card-text">{userProfile.description}</p>
-                            <p className="card-text">{userProfile.linkedinUrl}</p>
-                            <p className="card-text">{userProfile.contactEmail}</p>
+                            <p className="card-text font-monospace">{userProfile.linkedinUrl}</p>
+                            <p className="card-text font-monospace">{userProfile.contactEmail}</p>
                             <p className="card-text">
                                 <small className="text-muted">Last update 1 min ago</small>
                             </p>

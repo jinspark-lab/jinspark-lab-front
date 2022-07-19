@@ -1,13 +1,22 @@
 import React from 'react';
+import LabDocument from '../components/LabDocument';
 
-const LabContentView = ({labInfo}) => {
+const LabContentView = ({ userLab }) => {
+
     return (
-        <div className="card mb-3">
-            <img src="..." className="card-img-top" alt="..."></img>
-            <div className="card-body">
-                <h5 className="card-title">Card Title</h5>
-                <p className="card-text">This is Card Description</p>
-                <p className="card-text"><small className="text-muted">Last Updated</small></p>
+        <div>
+            <div>
+                <h4>
+                About this Lab
+                </h4>
+            </div>
+            <hr></hr>
+            <div>
+                {
+                    userLab.userLabList.map(userLab => 
+                        <LabDocument key={userLab.labId} userLab={userLab} />
+                    )
+                }
             </div>
         </div>
     )

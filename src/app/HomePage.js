@@ -22,28 +22,26 @@ const HomePage = () => {
     const fetchProfile = async () => {
         try {
             // 'https://jsonplaceholder.typicode.com/users'
-            const response = await axios.get('http://localhost:8080/profile/admin', {
+            const response = await axios.post('http://localhost:8080/profile/admin', {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 }
             );
             setContent(response.data);
-            console.log(response.data);
         } catch (e) {
             console.log(e);
         }
     };
-    const fetchJson = async () => {
+    const fetchLab = async () => {
         try {
-            const response = await axios.get('https://jsonplaceholder.typicode.com/users', {
+            const response = await axios.post('http://localhost:8080/lab/admin', {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 }
             );
             setContent(response.data);
-            // console.log("Fetch Json - " + response);
         } catch (e) {
             console.log(e);
         }
@@ -55,7 +53,7 @@ const HomePage = () => {
         if (id === 0) {
             fetchProfile();
         } else {
-            fetchJson();
+            fetchLab();
         }
     };
     const renderContent = () => {
@@ -63,7 +61,7 @@ const HomePage = () => {
             case 0:
                 return <ProfileContentView userProfile={content}></ProfileContentView>
             case 1:
-                return <LabContentView></LabContentView>
+                return <LabContentView userLab={content}></LabContentView>
         }
     };
 

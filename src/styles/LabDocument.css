@@ -1,0 +1,16 @@
+
+.lab-document {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #c9ccd2;
+    background-color: ghostwhite;
+}
+
+.lab-title {
+    font-size: x-large;
+}
+
+.lab-description {
+    font-size: large;
+    margin: 10px;
+}
