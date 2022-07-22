@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import ProjectBoxInput from './ProjectBoxInput';
 import '../../styles/AdminPage.css';
 import '../../styles/CareerBox.css';
-import { isContentEditable } from '@testing-library/user-event/dist/utils';
 
 // Single Item represent text
 const CareerBoxInput = ({ careerId, userCareer, onChange, onDelete }) => {
@@ -78,13 +77,13 @@ const CareerBoxInput = ({ careerId, userCareer, onChange, onDelete }) => {
     const changeProject = (e) => {
         setCareerObject(prevState => ({
             ...prevState,
-            userProjectList: careerObject.userProjectList.map(userProject => userProject.projectId == e.projectId ? e : userProject)
+            userProjectList: careerObject.userProjectList.map(userProject => userProject.projectId === e.projectId ? e : userProject)
         }));
     };
     const deleteProject = (id) => {
         setCareerObject(prevState => ({
             ...prevState,
-            userProjectList: careerObject.userProjectList.filter(project=>project.projectId != id)
+            userProjectList: careerObject.userProjectList.filter(project=>project.projectId !== id)
         }));
     };
 

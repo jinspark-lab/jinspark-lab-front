@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/LabDocument.css';
+import '../../styles/LabDocument.css';
 
 // Single Item represent text
 const LabDocument = ({ userLab }) => {

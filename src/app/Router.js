@@ -1,12 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './HomePage';
-import AlgorithmPage from './AlgorithmPage';
-import ArchitecturePage from './ArchitecturePage';
-import AdminPage from './AdminPage';
-import ServicePage from './ServicePage';
+import HomePage from './home/HomePage';
+import AlgorithmPage from './algorithm/AlgorithmPage';
+import ArchitecturePage from './architecture/ArchitecturePage';
+import AdminPage from './admin/AdminPage';
+import ServicePage from './service/ServicePage';
 
-const Router = ({ }) => {
+const Router = () => {
     return (
         <Routes>
             <Route path="/" element={<HomePage />}></Route>

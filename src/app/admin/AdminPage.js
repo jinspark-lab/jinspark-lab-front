@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import ItemListContainer from '../components/ItemListContainer';
-import EditProfileView from './admin/EditProfileView';
-import EditLabView from './admin/EditLabView';
-import AddServiceView from './admin/AddServiceView';
-import EditServiceView from './admin/EditServiceView';
-import SettingsView from './admin/SettingsView';
+import ItemListContainer from '../../components/common/ItemListContainer';
+import EditProfileView from './EditProfileView';
+import EditLabView from './EditLabView';
+import AddServiceView from './AddServiceView';
+import EditServiceView from './EditServiceView';
+import SettingsView from './SettingsView';
+import EditProfileContainer from './EditProfileContainer';
 
 const AdminPage = () => {
     const [menu, setMenu] = useState(0);
@@ -33,13 +34,12 @@ const AdminPage = () => {
         }
     ];
     const onClickMenu = (id) => {
-        console.log("On Click Item : " + id);
         setMenu(id);
     };
     const renderContent = () => {
         switch (menu) {
             case 0:
-                return <EditProfileView></EditProfileView>
+                return <EditProfileContainer></EditProfileContainer>
             case 1:
                 return <EditLabView></EditLabView>
             case 2:

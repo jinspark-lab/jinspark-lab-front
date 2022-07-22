@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/SkillBadge.css';
+import '../../styles/SkillBadge.css';
 
 // Single Item represent text
 const SkillBadge = ({ name, experience, proficiency }) => {

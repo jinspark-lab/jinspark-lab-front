@@ -1,6 +1,6 @@
 import React from 'react';
-import CareerBox from '../components/CareerBox';
-import SkillBadge from '../components/SkillBadge';
+import CareerBox from '../../components/home/CareerBox';
+import SkillBadge from '../../components/home/SkillBadge';
 
 const ProfileContentView = ({userProfile}) => {
     return (

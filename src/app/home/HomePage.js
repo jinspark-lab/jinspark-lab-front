@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ItemListContainer from '../components/ItemListContainer';
+import ItemListContainer from '../../components/common/ItemListContainer';
 import ProfileContentView from './ProfileContentView';
-import LoadingView from '../components/LoadingView';
+import LoadingView from '../../components/LoadingView';
 import LabContentView from './LabContentView';
 
 const HomePage = () => {
@@ -21,7 +21,6 @@ const HomePage = () => {
     ];
     const fetchProfile = async () => {
         try {
-            // 'https://jsonplaceholder.typicode.com/users'
             const response = await axios.post('http://localhost:8080/profile/admin', {
                     headers: {
                         'Content-Type': 'application/json'
@@ -62,6 +61,8 @@ const HomePage = () => {
                 return <ProfileContentView userProfile={content}></ProfileContentView>
             case 1:
                 return <LabContentView userLab={content}></LabContentView>
+            default:
+                return <ProfileContentView userProfile={content}></ProfileContentView>
         }
     };
 

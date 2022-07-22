@@ -1,5 +1,5 @@
 import React from 'react';
-import LabDocument from '../components/LabDocument';
+import LabDocument from '../../components/home/LabDocument';
 
 const LabContentView = ({ userLab }) => {
 

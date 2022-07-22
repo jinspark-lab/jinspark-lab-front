@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Item from './Item';
 import ItemList from './ItemList';
 
 // Item : Item shows item vertically
 const ItemListContainer = ({ inputItems, onClickHandler }) => {
-
-    // newItems are same with last time, just use the last elements.
-    // const items = useMemo(() => newItems, [newItems]);
-    const [items, setItems] = useState(inputItems);
-
-    const itemList = items.map(
+    const itemList = inputItems.map(
         ({id, text}) => (
             <Item 
             id={id}

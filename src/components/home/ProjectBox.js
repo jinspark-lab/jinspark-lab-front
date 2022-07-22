@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/ProjectBox.css';
+import '../../styles/ProjectBox.css';
 
 // Single Item represent text
 const ProjectBox = ({ description }) => {

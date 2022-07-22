@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/CareerBox.css';
+import '../../styles/CareerBox.css';
 import ProjectBox from './ProjectBox';
 
 // Single Item represent text

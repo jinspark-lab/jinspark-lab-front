@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styles from '../styles/Item.module.css';
+import React from 'react';
+import styles from '../../styles/Item.module.css';
 
 // Items that can be manipulate inside content
 const Element = ({text, checked, id, onToggle, onRemove }) => {
