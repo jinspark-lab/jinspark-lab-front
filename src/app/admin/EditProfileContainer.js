@@ -8,7 +8,7 @@ const EditProfileContainer = () => {
 
     const fetchProfile = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/profile/admin', {
+            const response = await axios.post('http://localhost:8080/api/profile/admin', {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -118,6 +118,7 @@ const EditProfileContainer = () => {
 
     const onClickSubmit = () => {
         const userProfileRequest = {
+            userId: content.userId,
             userProfile: {
                 userId: content.userId,
                 name: content.name,
@@ -131,7 +132,7 @@ const EditProfileContainer = () => {
             userCareerList: content.userCareerList
         };
         setRefresh(true);
-        axios.post('http://localhost:8080/profile/update', userProfileRequest, {
+        axios.post('http://localhost:8080/api/profile/update', userProfileRequest, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

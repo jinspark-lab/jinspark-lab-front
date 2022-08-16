@@ -6,10 +6,10 @@ import ArchitecturePage from './architecture/ArchitecturePage';
 import AdminPage from './admin/AdminPage';
 import ServicePage from './service/ServicePage';
 
-const Router = () => {
+const Router = ({authState}) => {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/" element={<HomePage authState={authState}/>}></Route>
             <Route path="/algorithm" element={<AlgorithmPage />}></Route>
             <Route path="/architecture" element={<ArchitecturePage />}></Route>
             <Route path="/service" element={<ServicePage />}></Route>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import ItemListContainer from '../../components/common/ItemListContainer';
 import ProfileContentView from './ProfileContentView';
 import LoadingView from '../../components/LoadingView';
 import LabContentView from './LabContentView';
 
-const HomePage = () => {
+const HomePage = ({authState}) => {
     const [content, setContent] = useState(null);
     const [menu, setMenu] = useState(0);
 
@@ -21,28 +22,45 @@ const HomePage = () => {
     ];
     const fetchProfile = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/profile/admin', {
+            const token = sessionStorage.getItem('token');
+            const decoded = jwt_decode(token);
+            const userId = decoded.userId;
+
+            const response = await axios.post('http://localhost:8080/api/profile', {
+                    userId: userId
+                }, {
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
                     }
-                }
-            );
+                });
             setContent(response.data);
         } catch (e) {
             console.log(e);
+            if (e && e.response && e.response.status && e.response.status == 401) {
+                authState.logoutHandler();
+            }
         }
     };
     const fetchLab = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/lab/admin', {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
+            const token = sessionStorage.getItem('token');
+            const decoded = jwt_decode(token);
+            const userId = decoded.userId;
+
+            const response = await axios.post('http://localhost:8080/api/lab/admin', {
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }                
+            });
             setContent(response.data);
         } catch (e) {
             console.log(e);
+            if (e && e.response && e.response.status && e.response.status == 401) {
+                authState.logoutHandler();
+            }
         }
     };
     const onClickMenu = (id) => {
@@ -66,10 +84,13 @@ const HomePage = () => {
         }
     };
 
-    // useEffect works as a componentDidMount()
     useEffect(()=> {
-        fetchProfile();
-    }, []);
+        if (menu === 0) {
+            fetchProfile();
+        } else {
+            fetchLab();
+        }
+    }, [menu]);
 
     return (
         <div className='row'>

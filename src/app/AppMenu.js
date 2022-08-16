@@ -1,7 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 const AppMenu = () => {
+
+    const adminAvailable = () => {
+        const token = sessionStorage.getItem('token');
+        const decoded = jwt_decode(token);
+        if (decoded.role.includes('HOST') || decoded.role.includes('ADMIN')) {
+            return true;
+        }
+        return false;
+    }
+
     return (
         <div className='container'>
             <div className='col-2'>
@@ -13,18 +24,16 @@ const AppMenu = () => {
                         <li className='navbar-item'>
                             <Link to="/" className='nav-link active'>Home</Link>
                         </li>
-                        {/* <li className='navbar-item'>
-                            <Link to="/algorithm" className='nav-link active'>Algorithm</Link>
-                        </li>
-                        <li className='navbar-item'>
-                            <Link to="/architecture" className='nav-link active'>Architecture</Link>
-                        </li> */}
                         <li className='navbar-item'>
                             <Link to="/service" className='nav-link active'>Service</Link>
                         </li>
-                        <li className='navbar-item'>
-                            <Link to='/admin' className='nav-link'>Admin</Link>
-                        </li>
+                        {
+                            adminAvailable() ? 
+                            <li className='navbar-item'>
+                                <Link to='/admin' className='nav-link'>Admin</Link>
+                            </li> : 
+                            <li></li>
+                        }
                     </ul>
                 </div>
             </div>
