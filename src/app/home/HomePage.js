@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import api from '../../module/Api';
 import jwt_decode from 'jwt-decode';
+import cookie from '../../module/Cookie';
 import ItemListContainer from '../../components/common/ItemListContainer';
 import ProfileContentView from './ProfileContentView';
 import LoadingView from '../../components/LoadingView';
 import LabContentView from './LabContentView';
 
-const HomePage = ({authState}) => {
+const HomePage = () => {
     const [content, setContent] = useState(null);
     const [menu, setMenu] = useState(0);
 
@@ -25,21 +27,12 @@ const HomePage = ({authState}) => {
             const token = sessionStorage.getItem('token');
             const decoded = jwt_decode(token);
             const userId = decoded.userId;
-
-            const response = await axios.post('http://localhost:8080/api/profile', {
-                    userId: userId
-                }, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + token
-                    }
-                });
+            const response = await api.post('http://localhost:8080/api/profile', {
+                userId: userId
+            });
             setContent(response.data);
         } catch (e) {
             console.log(e);
-            if (e && e.response && e.response.status && e.response.status == 401) {
-                authState.logoutHandler();
-            }
         }
     };
     const fetchLab = async () => {
@@ -47,20 +40,10 @@ const HomePage = ({authState}) => {
             const token = sessionStorage.getItem('token');
             const decoded = jwt_decode(token);
             const userId = decoded.userId;
-
-            const response = await axios.post('http://localhost:8080/api/lab/admin', {
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                }                
-            });
+            const response = await api.post('http://localhost:8080/api/lab/admin');
             setContent(response.data);
         } catch (e) {
             console.log(e);
-            if (e && e.response && e.response.status && e.response.status == 401) {
-                authState.logoutHandler();
-            }
         }
     };
     const onClickMenu = (id) => {

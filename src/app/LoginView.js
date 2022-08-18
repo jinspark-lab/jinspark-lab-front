@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
 import useScript from '../hooks/UseScript';
-import axios from 'axios';
+import api from '../module/Api';
+import cookie from '../module/Cookie';
 import '../styles/Login.css';
 
 const LoginView = ({ loginHandler }) => {
@@ -9,15 +9,9 @@ const LoginView = ({ loginHandler }) => {
     });
     const clientId = '122046664308-1gslgg7fm1i1eaahqpip5qgrt2raif8d.apps.googleusercontent.com';
 
-    const [cookies, setCookie] = useCookies(['refreshToken']);
     const oauth2Refresh = async () => {
-        if (cookies.token) {
-            const response = await axios.post('http://localhost:8080/login/oauth2/refresh', {}, {
-                // headers: {
-                //     'Content-Type': 'application/json',
-                //     'withCredentials': true
-                // }
-            });
+        if (cookie.getCookie('refreshToken')) {
+            const response = await api.post('http://localhost:8080/login/oauth2/refresh');
             console.log(response);
         }
     };
@@ -27,12 +21,7 @@ const LoginView = ({ loginHandler }) => {
             const requestBody = {
                 credential: res.credential
             };
-            const response = await axios.post('http://localhost:8080/login/oauth2/code/google', requestBody, {
-                // headers: {
-                //     'Content-Type': 'application/json',
-                //     'withCredentials': true
-                // }
-            });
+            const response = await api.post('http://localhost:8080/login/oauth2/code/google', requestBody);
             console.log(response);
             loginHandler(response.data);
         };
