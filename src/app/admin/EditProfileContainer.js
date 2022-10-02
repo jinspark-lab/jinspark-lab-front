@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import api from '../module/Api';
+import api from '../../module/Api';
 import EditProfileView from './EditProfileView';
 
 const EditProfileContainer = () => {
