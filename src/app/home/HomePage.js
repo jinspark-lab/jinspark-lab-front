@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
 import api from '../../module/Api';
 import jwt_decode from 'jwt-decode';
 import cookie from '../../module/Cookie';
@@ -27,7 +26,7 @@ const HomePage = () => {
             const token = sessionStorage.getItem('token');
             const decoded = jwt_decode(token);
             const userId = decoded.userId;
-            const response = await api.post('http://localhost:8080/api/profile', {
+            const response = await api.post('/api/profile', {
                 userId: userId
             });
             setContent(response.data);
@@ -40,7 +39,7 @@ const HomePage = () => {
             const token = sessionStorage.getItem('token');
             const decoded = jwt_decode(token);
             const userId = decoded.userId;
-            const response = await api.post('http://localhost:8080/api/lab/admin');
+            const response = await api.post('/api/lab/admin');
             setContent(response.data);
         } catch (e) {
             console.log(e);

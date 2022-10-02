@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 import cookie from "./Cookie";
 
 const api = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: process.env.REACT_APP_PROD_API_URL,
     withCredentials: true
 });
 
@@ -31,7 +31,7 @@ api.interceptors.response.use(function (response) {
     console.log(e);
     if (e && e.response && e.response.status && e.response.status == 401) {
         console.log("Access Token Expired");
-        return api.post('http://localhost:8080/login/oauth2/refresh')
+        return api.post('/login/oauth2/refresh')
                     .then(resp => {
                         console.log(resp.data);
                         const accessToken = resp.data.accessToken;

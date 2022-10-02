@@ -11,7 +11,7 @@ const LoginView = ({ loginHandler }) => {
 
     const oauth2Refresh = async () => {
         if (cookie.getCookie('refreshToken')) {
-            const response = await api.post('http://localhost:8080/login/oauth2/refresh');
+            const response = await api.post('/login/oauth2/refresh');
             console.log(response);
         }
     };
@@ -21,7 +21,7 @@ const LoginView = ({ loginHandler }) => {
             const requestBody = {
                 credential: res.credential
             };
-            const response = await api.post('http://localhost:8080/login/oauth2/code/google', requestBody);
+            const response = await api.post('/login/oauth2/code/google', requestBody);
             console.log(response);
             loginHandler(response.data);
         };

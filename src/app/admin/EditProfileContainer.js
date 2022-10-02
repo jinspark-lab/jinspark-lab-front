@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../module/Api';
 import EditProfileView from './EditProfileView';
 
 const EditProfileContainer = () => {
@@ -8,7 +8,7 @@ const EditProfileContainer = () => {
 
     const fetchProfile = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/api/profile/admin', {
+            const response = await api.post('/api/profile/admin', {
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -132,7 +132,7 @@ const EditProfileContainer = () => {
             userCareerList: content.userCareerList
         };
         setRefresh(true);
-        axios.post('http://localhost:8080/api/profile/update', userProfileRequest, {
+        api.post('/api/profile/update', userProfileRequest, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
