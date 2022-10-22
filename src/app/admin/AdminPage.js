@@ -48,6 +48,8 @@ const AdminPage = () => {
                 return <EditServiceView></EditServiceView>
             case 100:
                 return <SettingsView></SettingsView>
+            default:
+                return <EditProfileContainer></EditProfileContainer>
         }
     };
 

@@ -23,7 +23,6 @@ api.interceptors.request.use(function (config) {
 api.interceptors.response.use(function (response) {
     // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 데이터가 있는 작업 수행
-    console.log(response);
     return response;
 }, function (e) {
     // 2xx 외의 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
@@ -33,7 +32,6 @@ api.interceptors.response.use(function (response) {
         console.log("Access Token Expired");
         return api.post('/login/oauth2/refresh')
                     .then(resp => {
-                        console.log(resp.data);
                         const accessToken = resp.data.accessToken;
                         const refreshToken = resp.data.refreshToken;
                         const decodedRefreshToken = jwt_decode(refreshToken);

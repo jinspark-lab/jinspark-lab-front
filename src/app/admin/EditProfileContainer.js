@@ -8,12 +8,11 @@ const EditProfileContainer = () => {
 
     const fetchProfile = async () => {
         try {
-            const response = await api.post('/api/profile/admin', {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
+            // const token = sessionStorage.getItem('token');
+            // const decoded = jwt_decode(token);
+            // const userId = decoded.userId;
+            const response = await api.post('/api/profile', {
+            });
             setContent(response.data);
             setRefresh(false);
         } catch (e) {

@@ -10,6 +10,9 @@ import LabContentView from './LabContentView';
 const HomePage = () => {
     const [content, setContent] = useState(null);
     const [menu, setMenu] = useState(0);
+    // const token = sessionStorage.getItem('token');
+    // const decoded = jwt_decode(token);
+    // const userId = decoded.userId;
 
     const items = [
         {
@@ -23,11 +26,7 @@ const HomePage = () => {
     ];
     const fetchProfile = async () => {
         try {
-            const token = sessionStorage.getItem('token');
-            const decoded = jwt_decode(token);
-            const userId = decoded.userId;
             const response = await api.post('/api/profile', {
-                userId: userId
             });
             setContent(response.data);
         } catch (e) {
@@ -36,10 +35,7 @@ const HomePage = () => {
     };
     const fetchLab = async () => {
         try {
-            const token = sessionStorage.getItem('token');
-            const decoded = jwt_decode(token);
-            const userId = decoded.userId;
-            const response = await api.post('/api/lab/admin');
+            const response = await api.post('/api/lab');
             setContent(response.data);
         } catch (e) {
             console.log(e);
