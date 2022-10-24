@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 import cookie from "./Cookie";
 
 const api = axios.create({
-    baseURL: process.env.REACT_APP_PROD_API_URL,
+    baseURL: process.env.REACT_APP_API_URL,
     withCredentials: true
 });
 
