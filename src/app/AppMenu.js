@@ -25,13 +25,13 @@ const AppMenu = () => {
                             <Link to="/" className='nav-link active'>Home</Link>
                         </li>
                         <li className='navbar-item'>
-                            <Link to="/service" className='nav-link active'>Service</Link>
+                            <Link to="/userapp" className='nav-link active'>UserApp</Link>
                         </li>
                         {
-                            adminAvailable() ? 
+                            adminAvailable() ?
                             <li className='navbar-item'>
                                 <Link to='/admin' className='nav-link'>Admin</Link>
-                            </li> : 
+                            </li> :
                             <li></li>
                         }
                     </ul>

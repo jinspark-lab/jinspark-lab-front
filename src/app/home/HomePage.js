@@ -72,10 +72,10 @@ const HomePage = () => {
 
     return (
         <div className='row'>
-            <div className='col-3'>
+            <div className='col-2'>
                 <ItemListContainer inputItems={items} onClickHandler={onClickMenu}></ItemListContainer>
             </div>
-            <div className='col-9'>
+            <div className='col-10'>
                 {
                     !content ? <LoadingView></LoadingView>
                     : renderContent()

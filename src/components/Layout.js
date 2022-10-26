@@ -13,6 +13,7 @@ const Layout = ({ pageMenu, pageRouter }) => {
                 { pageRouter }
             </div>
             <div className="layout-bottom row">
+            <hr />
                 <center>JinsparkLab (https://github.com/jinspark-lab/jinspark-lab) </center>
             </div>
         </div>

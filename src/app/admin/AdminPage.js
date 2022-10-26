@@ -10,7 +10,6 @@ import EditProfileContainer from './EditProfileContainer';
 const AdminPage = () => {
     const [menu, setMenu] = useState(0);
 
-    // DB Layer ㅁㅏㄴ드ㄹ고, 어드민은 일단 로ㄹ에서만 띄우게 최소화. 로그인 붙이면 그때 퍼블릭
     const items = [
         {
             id: 0,
@@ -22,7 +21,7 @@ const AdminPage = () => {
         },
         {
             id: 2,
-            text: 'Add Service'
+            text: 'Add User App'
         },
         {
             id: 3,
@@ -55,10 +54,10 @@ const AdminPage = () => {
 
     return (
         <div className='row'>
-            <div className='col-3'>
+            <div className='col-2'>
                 <ItemListContainer inputItems={items} onClickHandler={onClickMenu}></ItemListContainer>
             </div>
-            <div className='col-9'>
+            <div className='col-10'>
                 { renderContent() }
             </div>
         </div>

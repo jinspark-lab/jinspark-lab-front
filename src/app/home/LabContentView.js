@@ -13,7 +13,7 @@ const LabContentView = ({ userLab }) => {
             <hr></hr>
             <div>
                 {
-                    userLab.userLabList.map(userLab => 
+                    userLab.userLabList.map(userLab =>
                         <LabDocument key={userLab.labId} userLab={userLab} />
                     )
                 }

@@ -4,7 +4,7 @@ import HomePage from './home/HomePage';
 import AlgorithmPage from './algorithm/AlgorithmPage';
 import ArchitecturePage from './architecture/ArchitecturePage';
 import AdminPage from './admin/AdminPage';
-import ServicePage from './service/ServicePage';
+import UserAppPage from './userapp/UserAppPage';
 
 const Router = () => {
     return (
@@ -12,7 +12,7 @@ const Router = () => {
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/algorithm" element={<AlgorithmPage />}></Route>
             <Route path="/architecture" element={<ArchitecturePage />}></Route>
-            <Route path="/service" element={<ServicePage />}></Route>
+            <Route path="/userapp" element={<UserAppPage />}></Route>
             <Route path="/admin" element={<AdminPage />}></Route>
         </Routes>
     )
