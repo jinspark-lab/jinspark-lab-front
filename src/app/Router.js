@@ -5,6 +5,7 @@ import AlgorithmPage from './algorithm/AlgorithmPage';
 import ArchitecturePage from './architecture/ArchitecturePage';
 import AdminPage from './admin/AdminPage';
 import UserAppPage from './userapp/UserAppPage';
+import UserAppContentView from './userapp/UserAppContentView';
 
 const Router = () => {
     return (
@@ -13,6 +14,7 @@ const Router = () => {
             <Route path="/algorithm" element={<AlgorithmPage />}></Route>
             <Route path="/architecture" element={<ArchitecturePage />}></Route>
             <Route path="/userapp" element={<UserAppPage />}></Route>
+            <Route path="/userapp/:appId" element={<UserAppContentView />}></Route>
             <Route path="/admin" element={<AdminPage />}></Route>
         </Routes>
     )

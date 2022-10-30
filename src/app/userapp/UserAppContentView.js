@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import ItemListContainer from '../../components/common/ItemListContainer';
 import '../../styles/UserAppPage.css';
 
 const UserAppContentView = () => {
+    const { appId } = useParams();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const shortcuts = location.state.shortcuts;
+
+    const items = location.state.shortcuts.map((shortcut) => ({
+        id: shortcut.appId,
+        text: shortcut.appId
+    }));
 
     const onClickMenu = (id) => {
         console.log("On Click Item : " + id);
-        // setContent(null);
-        // setMenu(id);
-        if (id === 0) {
-            // fetchProfile();
-        } else {
-            // fetchLab();
-        }
+        navigate('/userapp/' + id, {
+            state: {
+                shortcuts: shortcuts
+            }
+        });
     };
+
+    const fetchUserApp = () => {
+
+    };
+
+    useEffect(()=> {
+        fetchUserApp();
+    }, []);
 
     return (
         <div className='userapp-page row'>
-            <div className='col-12'>
+            <div className='col-2'>
+                <ItemListContainer inputItems={items} onClickHandler={onClickMenu}></ItemListContainer>
+            </div>
+            <div className='col-10'>
                 <div className='row'>
                     <div className='col-9'>
                     <h4 className='p-2 mb-1'>

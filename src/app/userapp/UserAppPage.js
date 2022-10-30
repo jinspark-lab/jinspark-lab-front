@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import AppCardContainer from '../../components/userapp/AppCardContainer';
 import '../../styles/UserAppPage.css';
 
 const UserAppPage = () => {
+    const navigate = useNavigate();
+    const [userAppShortcuts, setUserAppShortcuts] = useState(null);
 
     // const imgUrl = 'https://d26rx9t37cawwe.cloudfront.net/lab_arch.png';
 
     const onClickCard = (id) => {
-        console.log(id);
+        navigate('/userapp/' + id, {
+            state: {
+                shortcuts: cardList
+            }
+        });
     };
 
     const onErrorImage = (e) => {
@@ -27,19 +34,35 @@ const UserAppPage = () => {
         }
     ];
 
+    const renderContents = () => {
+        if (!userAppShortcuts) {
+            return <div>There is no UserApp created.</div>
+        } else {
+            return (<div>
+                <AppCardContainer inputCards={cardList} onClickHandler={onClickCard} onImgErrorHandler={onErrorImage} />
+            </div>)
+        }
+    };
+
+    const fetchUserAppShortcuts = () => {
+
+    };
+
+    useEffect(() => {
+        fetchUserAppShortcuts();
+    }, []);
+
     return (
         <div>
             <div className='container'>
-                <h2 className='jumbotron-heading'>
+                <h3 className='jumbotron-heading p-2'>
                 User Applications :)
-                </h2>
-                <p className='lead'>
-                This is application groups
-                </p>
+                </h3>
             </div>
             <div className='album bg-light'>
-                    <AppCardContainer inputCards={cardList} onClickHandler={onClickCard} onImgErrorHandler={onErrorImage}>
-                    </AppCardContainer>
+                {
+                    renderContents()
+                }
             </div>
         </div>
     )
