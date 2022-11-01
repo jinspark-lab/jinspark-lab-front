@@ -28,7 +28,7 @@ api.interceptors.response.use(function (response) {
     // 2xx 외의 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 오류가 있는 작업 수행
     console.log(e);
-    if (e && e.response && e.response.status && e.response.status == 401) {
+    if (e && e.response && e.response.status && e.response.status === 401) {
         console.log("Access Token Expired");
         return api.post('/login/oauth2/refresh')
                     .then(resp => {
@@ -42,7 +42,7 @@ api.interceptors.response.use(function (response) {
                         e.config.headers.Authorization = 'Bearer ' + accessToken;
                         return api.request(e.config);
                     })
-    } else if (e && e.response && e.response.status && e.response.status == 1001) {
+    } else if (e && e.response && e.response.status && e.response.status === 1001) {
         console.log("Session Expired");
         sessionStorage.removeItem('token');
         cookie.setCookie('refreshToken', '', {

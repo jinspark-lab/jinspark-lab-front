@@ -10,7 +10,7 @@ const AppCard = ({ id, onClickHandler, onImgErrorHandler }) => {
                     onError={onImgErrorHandler}
                     />
                 <div className='card-body'>
-                    <p className='card-text'>Hello World</p>
+                    <p className='card-text'>{id}</p>
                     <div className='d-flex'>
                         <button className='btn btn-success'>View</button>
                     </div>

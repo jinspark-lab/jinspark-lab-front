@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/AdminPage.css';
 
-// Add New Profile (Only calls after SignUp / Account Page)
+// TODO: Add New Profile (Only calls after SignUp / Account Page)
 const AddProfileView = () => {
     return (
         <div>

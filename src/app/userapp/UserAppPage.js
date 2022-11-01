@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import api from '../../module/Api';
 import AppCardContainer from '../../components/userapp/AppCardContainer';
+import LoadingView from '../../components/LoadingView';
 import '../../styles/UserAppPage.css';
 
 const UserAppPage = () => {
@@ -12,7 +14,7 @@ const UserAppPage = () => {
     const onClickCard = (id) => {
         navigate('/userapp/' + id, {
             state: {
-                shortcuts: cardList
+                shortcuts: userAppShortcuts
             }
         });
     };
@@ -21,31 +23,21 @@ const UserAppPage = () => {
         e.target.src = 'noimage.png';
     };
 
-    const cardList = [
-        {
-            userId : '',
-            appId : "App First",
-            thumbnailUrl : ''
-        },
-        {
-            userId : '',
-            appId : "App Second",
-            thumbnailUrl : ''
-        }
-    ];
-
     const renderContents = () => {
         if (!userAppShortcuts) {
+            return <LoadingView />
+        } else if (userAppShortcuts.length === 0) {
             return <div>There is no UserApp created.</div>
-        } else {
-            return (<div>
-                <AppCardContainer inputCards={cardList} onClickHandler={onClickCard} onImgErrorHandler={onErrorImage} />
-            </div>)
         }
+        return (<div>
+            <AppCardContainer inputCards={userAppShortcuts} onClickHandler={onClickCard} onImgErrorHandler={onErrorImage} />
+        </div>)
     };
 
-    const fetchUserAppShortcuts = () => {
-
+    const fetchUserAppShortcuts = async () => {
+        const response = await api.post('/api/userapp/shortcuts', {
+        });
+        setUserAppShortcuts(response.data.userAppShortcutList);
     };
 
     useEffect(() => {

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import ItemListContainer from '../../components/common/ItemListContainer';
-import EditProfileView from './EditProfileView';
 import EditLabView from './EditLabView';
-import AddServiceView from './AddServiceView';
-import EditServiceView from './EditServiceView';
+import AddUserAppContainer from './AddUserAppContainer';
+import EditUserAppPage from './EditUserAppPage';
 import SettingsView from './SettingsView';
 import EditProfileContainer from './EditProfileContainer';
 
@@ -25,7 +24,7 @@ const AdminPage = () => {
         },
         {
             id: 3,
-            text: 'Edit/Remove Service'
+            text: 'Edit/Remove App'
         },
         {
             id: 100,
@@ -42,9 +41,9 @@ const AdminPage = () => {
             case 1:
                 return <EditLabView></EditLabView>
             case 2:
-                return <AddServiceView></AddServiceView>
+                return <AddUserAppContainer></AddUserAppContainer>
             case 3:
-                return <EditServiceView></EditServiceView>
+                return <EditUserAppPage></EditUserAppPage>
             case 100:
                 return <SettingsView></SettingsView>
             default:
