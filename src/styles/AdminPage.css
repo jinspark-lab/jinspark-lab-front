@@ -7,6 +7,15 @@
     margin: 10px;
 }
 
+.admin-input {
+
+}
+
+.admin-input:invalid:focus {
+    /* background-color: ; */
+    border: 2px solid red;
+}
+
 .admin-label {
     padding: 5px;
 }

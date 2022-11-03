@@ -11,6 +11,16 @@ const EditUserAppContainer = ({appId}) => {
     const [submitModal, setSubmitModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
     const [cancelModal, setCancelModal] = useState(false);
+    const [errorStates, setErrorStates] = useState({
+        appId: false,
+        repoLink: false,
+        introText: false,
+        appLink: false,
+        appPicture: false,
+        architectureUrl: false,
+        description: false,
+        thumbnailUrl: false
+    });
 
     const fetchUserApp = async () => {
         try {
@@ -26,6 +36,10 @@ const EditUserAppContainer = ({appId}) => {
         setContent(prevState => ({
             ...prevState,
             appId: e.target.value
+        }));
+        setErrorStates(prevState => ({
+            ...prevState,
+            appId: e.target.value.length < 3
         }));
     };
 
@@ -79,6 +93,11 @@ const EditUserAppContainer = ({appId}) => {
     };
 
     const onClickSubmit = () => {
+        const validationError = Object.entries(errorStates).map(entry => entry[1]).reduce((a, b) => a || b);
+        if (validationError) {
+            return ;
+        }
+
         const userAppRequest = {
             userApp: {
                 appId: content.appId,
@@ -188,7 +207,7 @@ const EditUserAppContainer = ({appId}) => {
                 !content ? <LoadingView />
                 :
                 <div>
-                    <EditUserAppView content={content} handlers={handlers}></EditUserAppView>
+                    <EditUserAppView content={content} errorStates={errorStates} handlers={handlers}></EditUserAppView>
                     <ModalView visible={submitModal} modalContent={submitModalContent} onClickSubmit={onClickSubmitModalSubmit} />
                     <ModalView visible={deleteModal} modalContent={deleteModalContent} onClickSubmit={onClickDeleteModalSubmit} onClickCancel={onClickDeleteModalCancel} />
                     <ModalView visible={cancelModal} modalContent={cancelModalContent} onClickSubmit={onClickCancelModalSubmit} onClickCancel={onClickCancelModalCancel} />

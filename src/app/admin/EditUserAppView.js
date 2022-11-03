@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EditUserAppView = ({ content, handlers }) => {
+const EditUserAppView = ({ content, errorStates, handlers }) => {
     return (
         <div>
             <div>
@@ -12,6 +12,7 @@ const EditUserAppView = ({ content, handlers }) => {
                         <input type='text' className='form-control' id='appId'
                         value={content.appId} onChange={handlers.handleAppName}
                         />
+                        <span style={{color: 'red'}}>{errorStates.appId ? 'App name should be longer than 3' : ''}</span>
                     </div>
                     {/* TODO: Make Image upload */}
                     <div className='form-group admin-form'>
@@ -51,7 +52,7 @@ const EditUserAppView = ({ content, handlers }) => {
                     </div>
 
                     <div className='admin-form-button'>
-                        <button type='button' className='btn btn-primary admin-button' onClick={handlers.onClickSubmit}>Submit</button>
+                        <button type='submit' className='btn btn-primary admin-button' onClick={handlers.onClickSubmit}>Submit</button>
                         <button type='button' className='btn btn-danger admin-button' onClick={handlers.onClickRemove}>Remove</button>
                         <button type='button' className='btn btn-outline-dark admin-button' onClick={handlers.onClickCancel}>Cancel</button>
                     </div>

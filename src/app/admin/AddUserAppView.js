@@ -1,6 +1,8 @@
 import React from 'react';
+import '../../styles/AdminPage.css';
 
-const AddUserAppView = ({ content, handlers }) => {
+const AddUserAppView = ({ content, errorStates, handlers }) => {
+
     return (
         <div>
             <div>
@@ -8,10 +10,11 @@ const AddUserAppView = ({ content, handlers }) => {
             </div>
             <div className='admin-page'>
                     <div className='form-group admin-form'>
-                        <label className='admin-label' htmlFor='appId'>App Name</label>
-                        <input type='text' className='form-control' id='appId'
+                        <label className='form-label' htmlFor='appId'>App Name</label>
+                        <input type='text' className='form-control admin-input' id='appId'
                         value={content.appId} onChange={handlers.handleAppName}
                         />
+                        <span style={{color: 'red'}}>{errorStates.appId ? 'App name should be longer than 3' : ''}</span>
                     </div>
                     {/* TODO: Make Image upload */}
                     <div className='form-group admin-form'>
@@ -51,7 +54,7 @@ const AddUserAppView = ({ content, handlers }) => {
                     </div>
 
                     <div className='admin-form-button'>
-                        <button type='button' className='btn btn-primary admin-button' onClick={handlers.onClickSubmit}>Submit</button>
+                        <button type='submit' className='btn btn-primary admin-button' onClick={handlers.onClickSubmit}>Submit</button>
                         <button type='button' className='btn btn-outline-dark admin-button' onClick={handlers.onClickCancel}>Cancel</button>
                     </div>
             </div>

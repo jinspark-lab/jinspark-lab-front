@@ -18,11 +18,25 @@ const AddUserAppContainer = () => {
     });
     const [submitModal, setSubmitModal] = useState(false);
     const [cancelModal, setCancelModal] = useState(false);
+    const [errorStates, setErrorStates] = useState({
+        appId: false,
+        repoLink: false,
+        introText: false,
+        appLink: false,
+        appPicture: false,
+        architectureUrl: false,
+        description: false,
+        thumbnailUrl: false
+    });
 
     const handleAppName = (e) => {
         setContent(prevState => ({
             ...prevState,
             appId: e.target.value
+        }));
+        setErrorStates(prevState => ({
+            ...prevState,
+            appId: e.target.value.length < 3
         }));
     };
 
@@ -76,6 +90,11 @@ const AddUserAppContainer = () => {
     };
 
     const onClickSubmit = () => {
+        const validationError = Object.entries(errorStates).map(entry => entry[1]).reduce((a, b) => a || b);
+        if (validationError) {
+            return ;
+        }
+
         const userAppRequest = {
             userApp: {
                 appId: content.appId,
@@ -153,7 +172,7 @@ const AddUserAppContainer = () => {
 
     return (
         <div>
-            <AddUserAppView content={content} handlers={handlers}></AddUserAppView>
+            <AddUserAppView content={content} errorStates={errorStates} handlers={handlers}></AddUserAppView>
             <ModalView visible={submitModal} modalContent={submitModalContent} onClickSubmit={onClickSubmitModalSubmit} />
             <ModalView visible={cancelModal} modalContent={cancelModalContent} onClickSubmit={onClickCancelModalSubmit} onClickCancel={onClickCancelModalCancel} />
         </div>

@@ -12,11 +12,6 @@ const EditUserAppPage = () => {
     const [selectedApp, setSelectedApp] = useState(null);
 
     const onClickCard = (id) => {
-        // navigate('/userapp/' + id, {
-        //     state: {
-        //         shortcuts: userAppShortcuts
-        //     }
-        // });
         setSelectedApp(id);
     };
 
@@ -74,7 +69,7 @@ const EditUserAppPage = () => {
 
     useEffect(() => {
         fetchUserAppShortcuts();
-    }, []);
+    }, [selectedApp]);
 
     return (
         <div>
