@@ -53,7 +53,7 @@ const EditUserAppView = ({ content, handlers }) => {
                     <div className='admin-form-button'>
                         <button type='button' className='btn btn-primary admin-button' onClick={handlers.onClickSubmit}>Submit</button>
                         <button type='button' className='btn btn-danger admin-button' onClick={handlers.onClickRemove}>Remove</button>
-                        <button type='button' className='btn btn-outline-dark admin-button'>Cancel</button>
+                        <button type='button' className='btn btn-outline-dark admin-button' onClick={handlers.onClickCancel}>Cancel</button>
                     </div>
             </div>
         </div>

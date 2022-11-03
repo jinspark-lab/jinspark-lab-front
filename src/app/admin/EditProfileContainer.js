@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import api from '../../module/Api';
 import EditProfileView from './EditProfileView';
+import ModalView from '../../components/ModalView';
 
 const EditProfileContainer = () => {
+    const navigate = useNavigate();
     const [content, setContent] = useState(null);
     const [refresh, setRefresh] = useState(true);
+    const [submitModal, setSubmitModal] = useState(false);
+    const [cancelModal, setCancelModal] = useState(false);
 
     const fetchProfile = async () => {
         try {
@@ -138,12 +143,43 @@ const EditProfileContainer = () => {
             }
         ).then(response => {
             console.log(response);
+            setSubmitModal(true);
+            setCancelModal(false);
         }).catch(error => {
             console.error(error);
-        }).finally(() => {
-            console.log("Set Refresh True ");
             setContent(null);
+        }).finally(() => {
         });
+    };
+
+    const onClickCancel = () => {
+        console.log("Cancel");
+        setSubmitModal(false);
+        setCancelModal(true);
+    };
+
+    const submitModalContent = {
+        title: 'Information',
+        text: 'Profile Successfully Updated!'
+    }
+
+    const onClickSubmitModalSubmit = () => {
+        setSubmitModal(false);
+        navigate('/');
+    };
+
+    const cancelModalContent = {
+        title: 'Alert',
+        text: 'Unsaved data will be disappeared.'
+    };
+
+    const onClickCancelModalSubmit = () => {
+        setCancelModal(false);
+        navigate('/');
+    };
+
+    const onClickCancelModalCancel = () => {
+        setCancelModal(false);
     };
 
     const handlers = {
@@ -159,7 +195,8 @@ const EditProfileContainer = () => {
         onAddCareerBox,
         onChangeCareerBox,
         onDeleteCareerBox,
-        onClickSubmit
+        onClickSubmit,
+        onClickCancel
     };
 
     // useEffect works as a componentDidMount()
@@ -170,7 +207,11 @@ const EditProfileContainer = () => {
     }, [content]);
 
     return (
-        <EditProfileView content={content} refresh={refresh} handlers={handlers}></EditProfileView>
+        <div>
+            <EditProfileView content={content} refresh={refresh} handlers={handlers}></EditProfileView>
+            <ModalView visible={submitModal} modalContent={submitModalContent} onClickSubmit={onClickSubmitModalSubmit} />
+            <ModalView visible={cancelModal} modalContent={cancelModalContent} onClickSubmit={onClickCancelModalSubmit} onClickCancel={onClickCancelModalCancel} />
+        </div>
     )
 };
 export default EditProfileContainer;

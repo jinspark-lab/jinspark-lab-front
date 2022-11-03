@@ -3,10 +3,14 @@ import { useNavigate } from "react-router-dom";
 import api from '../../module/Api';
 import EditUserAppView from './EditUserAppView';
 import LoadingView from '../../components/LoadingView';
+import ModalView from '../../components/ModalView';
 
 const EditUserAppContainer = ({appId}) => {
     const navigate = useNavigate();
     const [content, setContent] = useState(null);
+    const [submitModal, setSubmitModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [cancelModal, setCancelModal] = useState(false);
 
     const fetchUserApp = async () => {
         try {
@@ -94,8 +98,9 @@ const EditUserAppContainer = ({appId}) => {
             }
         ).then(response => {
             //TODO: Make Additional Page to inform
-            alert("User App Modified");
-            navigate('/userapp');
+            setSubmitModal(true);
+            setDeleteModal(false);
+            setCancelModal(false);
         }).catch(error => {
             console.error(error);
         }).finally(() => {
@@ -103,15 +108,61 @@ const EditUserAppContainer = ({appId}) => {
     };
 
     const onClickRemove = () => {
+        setSubmitModal(false);
+        setDeleteModal(true);
+        setCancelModal(false);
+    };
+
+    const onClickCancel = () => {
+        setSubmitModal(false);
+        setDeleteModal(false);
+        setCancelModal(true);
+    };
+
+    const submitModalContent = {
+        title: 'Information',
+        text: 'User App Successfully Updated!'
+    }
+
+    const onClickSubmitModalSubmit = () => {
+        setSubmitModal(false);
+        navigate('/userapp');
+    };
+
+    const deleteModalContent = {
+        title: 'Warning',
+        text: 'Content will be deleted.'
+    };
+
+    const onClickDeleteModalSubmit = () => {
         api.post('/api/userapp/delete?appId=' + content.appId,{
         }).then(response => {
-            alert("User App Deleted");
+            setDeleteModal(false);
             navigate('/userapp');
         }).catch(error => {
             console.error(error);
         }).finally(() => {
         });
     };
+
+    const onClickDeleteModalCancel = () => {
+        setDeleteModal(false);
+    };
+
+    const cancelModalContent = {
+        title: 'Alert',
+        text: 'Unsaved data will be disappeared.'
+    };
+
+    const onClickCancelModalSubmit = () => {
+        setCancelModal(false);
+        navigate('/userapp');
+    };
+
+    const onClickCancelModalCancel = () => {
+        setCancelModal(false);
+    };
+
 
     const handlers = {
         handleAppName,
@@ -123,7 +174,8 @@ const EditUserAppContainer = ({appId}) => {
         handleDescription,
         handleThumbnailUrl,
         onClickSubmit,
-        onClickRemove
+        onClickRemove,
+        onClickCancel
     };
 
     useEffect(()=> {
@@ -134,7 +186,13 @@ const EditUserAppContainer = ({appId}) => {
         <div>
             {
                 !content ? <LoadingView />
-                : <EditUserAppView content={content} handlers={handlers}></EditUserAppView>
+                :
+                <div>
+                    <EditUserAppView content={content} handlers={handlers}></EditUserAppView>
+                    <ModalView visible={submitModal} modalContent={submitModalContent} onClickSubmit={onClickSubmitModalSubmit} />
+                    <ModalView visible={deleteModal} modalContent={deleteModalContent} onClickSubmit={onClickDeleteModalSubmit} onClickCancel={onClickDeleteModalCancel} />
+                    <ModalView visible={cancelModal} modalContent={cancelModalContent} onClickSubmit={onClickCancelModalSubmit} onClickCancel={onClickCancelModalCancel} />
+                </div>
             }
         </div>
     )

@@ -17,18 +17,18 @@ const EditProfileView = ({ content, refresh, handlers }) => {
                 <form>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='userName'>Your Name</label>
-                        <input type='text' className='form-control' id='userName' 
+                        <input type='text' className='form-control' id='userName' minLength='3'
                         value={content.name} onChange={handlers.handleName} />
                     </div>
                     {/* TODO: Make Image upload */}
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='userImage'>Your Image</label>
-                        <input type='text' className='form-control' id='userImage' 
+                        <input type='text' className='form-control' id='userImage'
                         value={content.pictureUrl} onChange={handlers.handlePictureUrl} />
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='userTitle'>Your Headline</label>
-                        <input type='text' className='form-control' id='userTitle' 
+                        <input type='text' className='form-control' id='userTitle'
                         value={content.title} onChange={handlers.handleTitle} />
                     </div>
                     <div className='form-group admin-form'>
@@ -43,14 +43,14 @@ const EditProfileView = ({ content, refresh, handlers }) => {
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='userEmail'>Your Email</label>
-                        <input type='email' className='form-control' id='userEmail' 
+                        <input type='email' className='form-control' id='userEmail'
                         value={content.contactEmail} onChange={handlers.handleContactEmail}/>
                         <small id='emailHelp' className='form-text text-muted'>We'll never share your email with anyone else.</small>
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label'>Your Skills</label>
                         {
-                            content.userSkillList.map(userSkill=> 
+                            content.userSkillList.map(userSkill=>
                                 <SkillBadgeInput key={userSkill.skillId} skillId={userSkill.skillId}
                                     userSkill={userSkill} onChange={handlers.onChangeSkillBadge} onDelete={handlers.onDeleteSkillBadge} />
                             )
@@ -75,7 +75,7 @@ const EditProfileView = ({ content, refresh, handlers }) => {
 
                     <div className='admin-form-button'>
                         <button type='submit' className='btn btn-primary admin-button' onClick={handlers.onClickSubmit}>Submit</button>
-                        <button type='button' className='btn btn-outline-dark admin-button'>Cancel</button>
+                        <button type='button' className='btn btn-outline-dark admin-button' onClick={handlers.onClickCancel}>Cancel</button>
                     </div>
                 </form>
             </div>

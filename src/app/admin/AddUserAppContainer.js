@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import api from '../../module/Api';
 import AddUserAppView from './AddUserAppView';
+import ModalView from '../../components/ModalView';
 
 const AddUserAppContainer = () => {
     const navigate = useNavigate();
@@ -15,6 +16,8 @@ const AddUserAppContainer = () => {
         description: '',
         thumbnailUrl: ''
     });
+    const [submitModal, setSubmitModal] = useState(false);
+    const [cancelModal, setCancelModal] = useState(false);
 
     const handleAppName = (e) => {
         setContent(prevState => ({
@@ -93,12 +96,42 @@ const AddUserAppContainer = () => {
         ).then(response => {
             console.log(response);
             //TODO: Make Additional Page to inform
-            alert("User App Registered");
-            navigate('/userapp');
+            setSubmitModal(true);
+            setCancelModal(false);
         }).catch(error => {
             console.error(error);
         }).finally(() => {
         });
+    };
+
+    const onClickCancel = () => {
+        console.log("Cancel");
+        setSubmitModal(false);
+        setCancelModal(true);
+    };
+
+    const submitModalContent = {
+        title: 'Information',
+        text: 'UserApp Successfully Registered!'
+    }
+
+    const onClickSubmitModalSubmit = () => {
+        setSubmitModal(false);
+        navigate('/userapp');
+    };
+
+    const cancelModalContent = {
+        title: 'Alert',
+        text: 'Unsaved data will be disappeared.'
+    };
+
+    const onClickCancelModalSubmit = () => {
+        setCancelModal(false);
+        navigate('/userapp');
+    };
+
+    const onClickCancelModalCancel = () => {
+        setCancelModal(false);
     };
 
     const handlers = {
@@ -110,7 +143,8 @@ const AddUserAppContainer = () => {
         handleArchitectureUrl,
         handleDescription,
         handleThumbnailUrl,
-        onClickSubmit
+        onClickSubmit,
+        onClickCancel
     };
 
     useEffect(() => {
@@ -118,7 +152,11 @@ const AddUserAppContainer = () => {
     }, []);
 
     return (
-        <AddUserAppView content={content} handlers={handlers}></AddUserAppView>
+        <div>
+            <AddUserAppView content={content} handlers={handlers}></AddUserAppView>
+            <ModalView visible={submitModal} modalContent={submitModalContent} onClickSubmit={onClickSubmitModalSubmit} />
+            <ModalView visible={cancelModal} modalContent={cancelModalContent} onClickSubmit={onClickCancelModalSubmit} onClickCancel={onClickCancelModalCancel} />
+        </div>
     )
 };
 export default AddUserAppContainer;
