@@ -6,6 +6,7 @@ import ArchitecturePage from './architecture/ArchitecturePage';
 import AdminPage from './admin/AdminPage';
 import UserAppPage from './userapp/UserAppPage';
 import UserAppContentView from './userapp/UserAppContentView';
+import NotFoundView from '../components/NotFoundView';
 
 const Router = () => {
     return (
@@ -16,6 +17,7 @@ const Router = () => {
             <Route path="/userapp" element={<UserAppPage />}></Route>
             <Route path="/userapp/:appId" element={<UserAppContentView />}></Route>
             <Route path="/admin" element={<AdminPage />}></Route>
+            <Route path="/*" element={<NotFoundView />}></Route>
         </Routes>
     )
 };
