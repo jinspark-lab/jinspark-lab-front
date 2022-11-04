@@ -62,10 +62,38 @@ const AddUserAppContainer = () => {
     };
 
     const handleAppPicture = (e) => {
-        setContent(prevState => ({
-            ...prevState,
-            appPicture: e.target.value
-        }));
+        if (!e.target.value) {
+            return ;
+        }
+        const formData = new FormData();
+        formData.append('file', e.target.files[0]);
+        api.post('/api/resource/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((result) => {
+            setContent(prevState => ({
+                ...prevState,
+                appPicture: result.data.objectPath,
+            }));
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    const deleteAppPicture = () => {
+        if (!content.appPicture) {
+            return ;
+        }
+        api.post('/api/resource/delete' + '?objectPath=' + content.appPicture)
+        .then((result) => {
+            setContent(prevState => ({
+                ...prevState,
+                appPicture: '',
+            }));
+        }).catch((error) => {
+            console.log(error);
+        });
     };
 
     const handleArchitectureUrl = (e) => {
@@ -159,6 +187,7 @@ const AddUserAppContainer = () => {
         handleIntroText,
         handleAppLink,
         handleAppPicture,
+        deleteAppPicture,
         handleArchitectureUrl,
         handleDescription,
         handleThumbnailUrl,

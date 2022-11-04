@@ -9,7 +9,7 @@ const EditUserAppView = ({ content, errorStates, handlers }) => {
             <div className='admin-page'>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='appId'>App Name</label>
-                        <input type='text' className='form-control' id='appId'
+                        <input type='text' className={errorStates.appId ? 'admin-input-invalid' : 'admin-input-valid'} id='appId'
                         value={content.appId} onChange={handlers.handleAppName}
                         />
                         <span style={{color: 'red'}}>{errorStates.appId ? 'App name should be longer than 3' : ''}</span>

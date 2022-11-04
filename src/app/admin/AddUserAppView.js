@@ -1,8 +1,8 @@
 import React from 'react';
+import FileUploadContainer from '../../components/admin/FileUploadContainer';
 import '../../styles/AdminPage.css';
 
 const AddUserAppView = ({ content, errorStates, handlers }) => {
-
     return (
         <div>
             <div>
@@ -11,7 +11,7 @@ const AddUserAppView = ({ content, errorStates, handlers }) => {
             <div className='admin-page'>
                     <div className='form-group admin-form'>
                         <label className='form-label' htmlFor='appId'>App Name</label>
-                        <input type='text' className='form-control admin-input' id='appId'
+                        <input type='text' className={errorStates.appId ? 'admin-input-invalid' : 'admin-input-valid'} id='appId'
                         value={content.appId} onChange={handlers.handleAppName}
                         />
                         <span style={{color: 'red'}}>{errorStates.appId ? 'App name should be longer than 3' : ''}</span>
@@ -34,8 +34,7 @@ const AddUserAppView = ({ content, errorStates, handlers }) => {
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='appPicture'>Application Picture</label>
-                        <input type='text' className='form-control' id='appPicture'
-                        value={content.appPicture} onChange={handlers.handleAppPicture} />
+                        <FileUploadContainer id='appPicture' value={content.appPicture} onValueChanged={handlers.handleAppPicture} onDelete={handlers.deleteAppPicture} />
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='architectureUrl'>Architecture Link</label>
