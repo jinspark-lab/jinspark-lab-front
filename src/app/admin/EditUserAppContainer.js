@@ -64,19 +64,33 @@ const EditUserAppContainer = ({appId}) => {
         }));
     };
 
-    const handleAppPicture = (e) => {
+    const handleAppPicture = (objectPath) => {
         setContent(prevState => ({
             ...prevState,
-            appPicture: e.target.value
+            appPicture: objectPath,
         }));
     };
 
-    const handleArchitectureUrl = (e) => {
+    const deleteAppPicture = () => {
         setContent(prevState => ({
             ...prevState,
-            architectureUrl: e.target.value
+            appPicture: '',
         }));
     };
+
+    const handleArchitectureUrl = (objectPath) => {
+        setContent(prevState => ({
+            ...prevState,
+            architectureUrl: objectPath,
+        }));
+    };
+
+    const deleteArchitectureUrl = () => {
+        setContent(prevState => ({
+            ...prevState,
+            architectureUrl: '',
+        }));
+    }
 
     const handleDescription = (e) => {
         setContent(prevState => ({
@@ -85,10 +99,17 @@ const EditUserAppContainer = ({appId}) => {
         }));
     };
 
-    const handleThumbnailUrl = (e) => {
+    const handleThumbnailUrl = (objectPath) => {
         setContent(prevState => ({
             ...prevState,
-            thumbnailUrl: e.target.value
+            thumbnailUrl: objectPath
+        }));
+    };
+
+    const deleteThumbnailUrl = () => {
+        setContent(prevState => ({
+            ...prevState,
+            thumbnailUrl: ''
         }));
     };
 
@@ -189,9 +210,12 @@ const EditUserAppContainer = ({appId}) => {
         handleIntroText,
         handleAppLink,
         handleAppPicture,
+        deleteAppPicture,
         handleArchitectureUrl,
+        deleteArchitectureUrl,
         handleDescription,
         handleThumbnailUrl,
+        deleteThumbnailUrl,
         onClickSubmit,
         onClickRemove,
         onClickCancel

@@ -32,13 +32,13 @@ const EditUserAppView = ({ content, errorStates, handlers }) => {
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='appPicture'>Application Picture</label>
-                        <input type='text' className='form-control' id='appPicture'
-                        value={content.appPicture} onChange={handlers.handleAppPicture} />
+                        <FileUploadContainer id='appPicture' value={content.appPicture}
+                        onValueChanged={handlers.handleAppPicture} onDelete={handlers.deleteAppPicture} />
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='architectureUrl'>Architecture Link</label>
-                        <input type='text' className='form-control' id='architectureUrl'
-                        value={content.architectureUrl} onChange={handlers.handleArchitectureUrl} />
+                        <FileUploadContainer id='architectureUrl' value={content.architectureUrl}
+                        onValueChanged={handlers.handleArchitectureUrl} onDelete={handlers.deleteArchitectureUrl} />
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='description'>Description</label>
@@ -47,8 +47,8 @@ const EditUserAppView = ({ content, errorStates, handlers }) => {
                     </div>
                     <div className='form-group admin-form'>
                         <label className='admin-label' htmlFor='thumbnailUrl'>Thumbnail URL</label>
-                        <input type='text' className='form-control' id='thumbnailUrl'
-                        value={content.thumbnailUrl} onChange={handlers.handleThumbnailUrl} />
+                        <FileUploadContainer id='architectureUrl' value={content.thumbnailUrl}
+                        onValueChanged={handlers.handleThumbnailUrl} onDelete={handlers.deleteThumbnailUrl} />
                     </div>
 
                     <div className='admin-form-button'>

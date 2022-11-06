@@ -61,47 +61,33 @@ const AddUserAppContainer = () => {
         }));
     };
 
-    const handleAppPicture = (e) => {
-        if (!e.target.value) {
-            return ;
-        }
-        const formData = new FormData();
-        formData.append('file', e.target.files[0]);
-        api.post('/api/resource/upload', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }).then((result) => {
-            setContent(prevState => ({
-                ...prevState,
-                appPicture: result.data.objectPath,
-            }));
-        }).catch((error) => {
-            console.log(error);
-        });
+    const handleAppPicture = (objectPath) => {
+        setContent(prevState => ({
+            ...prevState,
+            appPicture: objectPath,
+        }));
     };
 
     const deleteAppPicture = () => {
-        if (!content.appPicture) {
-            return ;
-        }
-        api.post('/api/resource/delete' + '?objectPath=' + content.appPicture)
-        .then((result) => {
-            setContent(prevState => ({
-                ...prevState,
-                appPicture: '',
-            }));
-        }).catch((error) => {
-            console.log(error);
-        });
-    };
-
-    const handleArchitectureUrl = (e) => {
         setContent(prevState => ({
             ...prevState,
-            architectureUrl: e.target.value
+            appPicture: '',
         }));
     };
+
+    const handleArchitectureUrl = (objectPath) => {
+        setContent(prevState => ({
+            ...prevState,
+            architectureUrl: objectPath,
+        }));
+    };
+
+    const deleteArchitectureUrl = () => {
+        setContent(prevState => ({
+            ...prevState,
+            architectureUrl: '',
+        }));
+    }
 
     const handleDescription = (e) => {
         setContent(prevState => ({
@@ -110,10 +96,17 @@ const AddUserAppContainer = () => {
         }));
     };
 
-    const handleThumbnailUrl = (e) => {
+    const handleThumbnailUrl = (objectPath) => {
         setContent(prevState => ({
             ...prevState,
-            thumbnailUrl: e.target.value
+            thumbnailUrl: objectPath
+        }));
+    };
+
+    const deleteThumbnailUrl = () => {
+        setContent(prevState => ({
+            ...prevState,
+            thumbnailUrl: ''
         }));
     };
 
@@ -189,8 +182,10 @@ const AddUserAppContainer = () => {
         handleAppPicture,
         deleteAppPicture,
         handleArchitectureUrl,
+        deleteArchitectureUrl,
         handleDescription,
         handleThumbnailUrl,
+        deleteThumbnailUrl,
         onClickSubmit,
         onClickCancel
     };
