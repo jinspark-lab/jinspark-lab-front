@@ -1,4 +1,6 @@
 import React from 'react';
+import FileUploadContainer from '../../components/admin/FileUploadContainer';
+import '../../styles/AdminPage.css';
 
 const EditUserAppView = ({ content, errorStates, handlers }) => {
     return (
