@@ -17,11 +17,11 @@ const ProfileContentView = ({userProfile}) => {
                         <div className="card-body">
                             <h4 className="card-title">{userProfile.name}</h4>
                             <h5 className="card-text">{userProfile.title}</h5>
-                            <p className="card-text">{userProfile.description}</p>
+                            <p className="card-text p-2" style={{textAlign: 'left'}}>{userProfile.description}</p>
                             <p className="card-text font-monospace">{userProfile.linkedinUrl}</p>
                             <p className="card-text font-monospace">{userProfile.contactEmail}</p>
                             <p className="card-text">
-                                <small className="text-muted">Last update 1 min ago</small>
+                                <small className="text-muted">Last update -</small>
                             </p>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ const ProfileContentView = ({userProfile}) => {
             <div className="card-body">
                 <div className="row">
                     {
-                        userProfile.userSkillList.map(userSkill => 
+                        userProfile.userSkillList.map(userSkill =>
                         <SkillBadge key={userSkill.skillName} name={userSkill.skillName} experience={userSkill.experience} proficiency={userSkill.proficiency} />)
                     }
                 </div>
@@ -45,8 +45,8 @@ const ProfileContentView = ({userProfile}) => {
             </div>
             <div className="card-body">
                 {
-                    userProfile.userCareerList.map(userCareer => 
-                        <CareerBox key={userCareer.careerId} company={userCareer.company} jobTitle={userCareer.jobTitle} desc={userCareer.description} 
+                    userProfile.userCareerList.map(userCareer =>
+                        <CareerBox key={userCareer.careerId} company={userCareer.company} jobTitle={userCareer.jobTitle} desc={userCareer.description}
                         startDate={userCareer.careerStart.split(" ")[0]} endDate={userCareer.careerEnd !== null ? userCareer.careerEnd.split(" ")[0] : null} projectList={userCareer.userProjectList} />
                         )
                 }

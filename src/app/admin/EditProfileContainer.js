@@ -10,6 +10,8 @@ const EditProfileContainer = () => {
     const [refresh, setRefresh] = useState(true);
     const [submitModal, setSubmitModal] = useState(false);
     const [cancelModal, setCancelModal] = useState(false);
+    const [errorModal, setErrorModal] = useState(false);
+    const [errorModalMessage, setErrorModalMessage] = useState(null);
 
     const fetchProfile = async () => {
         try {
@@ -145,9 +147,12 @@ const EditProfileContainer = () => {
             console.log(response);
             setSubmitModal(true);
             setCancelModal(false);
+            setErrorModal(false);
         }).catch(error => {
             console.error(error);
             setContent(null);
+            setErrorModalMessage(error.response.data.message);
+            setErrorModal(true);
         }).finally(() => {
         });
     };
@@ -156,12 +161,13 @@ const EditProfileContainer = () => {
         console.log("Cancel");
         setSubmitModal(false);
         setCancelModal(true);
+        setErrorModal(false);
     };
 
     const submitModalContent = {
         title: 'Information',
         text: 'Profile Successfully Updated!'
-    }
+    };
 
     const onClickSubmitModalSubmit = () => {
         setSubmitModal(false);
@@ -180,6 +186,15 @@ const EditProfileContainer = () => {
 
     const onClickCancelModalCancel = () => {
         setCancelModal(false);
+    };
+
+    const errorModalContent = {
+        title: 'Error',
+        text: errorModalMessage
+    };
+
+    const onClickErrorModalSubmit = () => {
+        setErrorModal(false);
     };
 
     const handlers = {
@@ -211,6 +226,7 @@ const EditProfileContainer = () => {
             <EditProfileView content={content} refresh={refresh} handlers={handlers}></EditProfileView>
             <ModalView visible={submitModal} modalContent={submitModalContent} onClickSubmit={onClickSubmitModalSubmit} />
             <ModalView visible={cancelModal} modalContent={cancelModalContent} onClickSubmit={onClickCancelModalSubmit} onClickCancel={onClickCancelModalCancel} />
+            <ModalView visible={errorModal} modalContent={errorModalContent} onClickSubmit={onClickErrorModalSubmit} />
         </div>
     )
 };
