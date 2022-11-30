@@ -56,3 +56,11 @@
     justify-content: center;
     margin: auto;
 }
+
+.admin-code-font {
+    color: #2a2a2a
+}
+
+.admin-code-box {
+    background-color: #eaedea
+}

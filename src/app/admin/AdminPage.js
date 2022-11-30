@@ -5,6 +5,7 @@ import AddUserAppContainer from './AddUserAppContainer';
 import EditUserAppPage from './EditUserAppPage';
 import SettingsView from './SettingsView';
 import EditProfileContainer from './EditProfileContainer';
+import SharableContainer from './SharableContainer';
 
 const AdminPage = () => {
     const [menu, setMenu] = useState(0);
@@ -12,18 +13,22 @@ const AdminPage = () => {
     const items = [
         {
             id: 0,
-            text: 'Edit Profile'
+            text: 'My Sharables'
         },
         {
             id: 1,
-            text: 'Edit Lab Intro'
+            text: 'Edit Profile'
         },
         {
             id: 2,
-            text: 'Add User App'
+            text: 'Edit Lab Intro'
         },
         {
             id: 3,
+            text: 'Add User App'
+        },
+        {
+            id: 4,
             text: 'Edit/Remove App'
         },
         {
@@ -37,17 +42,19 @@ const AdminPage = () => {
     const renderContent = () => {
         switch (menu) {
             case 0:
-                return <EditProfileContainer></EditProfileContainer>
+                return <SharableContainer></SharableContainer>
             case 1:
-                return <EditLabView></EditLabView>
+                return <EditProfileContainer></EditProfileContainer>
             case 2:
-                return <AddUserAppContainer></AddUserAppContainer>
+                return <EditLabView></EditLabView>
             case 3:
+                return <AddUserAppContainer></AddUserAppContainer>
+            case 4:
                 return <EditUserAppPage></EditUserAppPage>
             case 100:
                 return <SettingsView></SettingsView>
             default:
-                return <EditProfileContainer></EditProfileContainer>
+                return <SharableContainer></SharableContainer>
         }
     };
 
