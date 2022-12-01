@@ -5,19 +5,42 @@ import LoadingView from '../../components/LoadingView';
 import '../../styles/AdminPage.css';
 
 const SharableContainer = () => {
-    const [userProfileSharable, setUserProfileSharable] = useState(null);
-    const [userAppSharableList, setUserAppSharableList] = useState(null);
+    const [sharableContent, setSharableContent] = useState(null);
 
     const onClickShareProfile = (contentId) => {
-        console.log(contentId);
+        setSharableContent(prevState => ({
+            ...prevState,
+            userProfileSharable: { ...sharableContent.userProfileSharable, shared: !sharableContent.userProfileSharable.shared }
+        }));
     };
 
     const onClickShareUserApp = (contentId) => {
-        console.log(contentId);
+        var newList = sharableContent.userAppSharableList.map(userAppSharable => {
+            let newUserAppSharable = userAppSharable;
+            if (userAppSharable.contentId === contentId) {
+                newUserAppSharable.shared = !userAppSharable.shared;
+            }
+            return newUserAppSharable;
+        });
+        setSharableContent(prevState => ({
+            ...prevState,
+            userAppSharableList: newList
+        }));
     };
 
     const onClickSubmit = (e) => {
-        console.log("On Click Submit");
+        console.log(sharableContent);
+        api.post('/api/content/update', sharableContent, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        ).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.error(error);
+        }).finally(() => {
+        });
     };
 
     const fetchSharableList = () => {
@@ -31,8 +54,7 @@ const SharableContainer = () => {
                 }
             }
         ).then(response => {
-            setUserProfileSharable(response.data.userProfileSharable);
-            setUserAppSharableList(response.data.userAppSharableList);
+            setSharableContent(response.data);
         }).catch(error => {
             console.error(error);
         }).finally(() => {
@@ -48,16 +70,16 @@ const SharableContainer = () => {
             <div className='my-3 p-3 bg-white rounded box-shadow'>
                 <h5 className='border-bottom border-grey pb-2 mb-0'>User Profile</h5>
                 {
-                    !userProfileSharable ? <div className='p-3'><LoadingView /></div>
-                    : <ContentLinkContainer title={"Profile Link"} sharable={userProfileSharable} onClickShareCallback={onClickShareProfile} />
+                    (!sharableContent || !sharableContent.userProfileSharable) ? <div className='p-3'><LoadingView /></div>
+                    : <ContentLinkContainer title={"Profile Link"} sharable={sharableContent.userProfileSharable} onClickShareCallback={onClickShareProfile} />
                 }
             </div>
 
             <div className='my-3 p-3 bg-white rounded box-shadow'>
                 <h5 className='border-bottom border-grey pb-2 mb-0'>User App</h5>
                 {
-                    !userAppSharableList ? <div className='p-3'><LoadingView /></div>
-                    : userAppSharableList.map(userAppSharable =>
+                    (!sharableContent || !sharableContent.userAppSharableList) ? <div className='p-3'><LoadingView /></div>
+                    : sharableContent.userAppSharableList.map(userAppSharable =>
                     <ContentLinkContainer title={userAppSharable.appId} sharable={userAppSharable} onClickShareCallback={onClickShareUserApp} />)
                 }
             </div>

@@ -3,8 +3,6 @@ import '../../styles/AdminPage.css';
 
 const ContentLinkContainer = ({ title, sharable, onClickShareCallback }) => {
     const onClickShareContent = (e) => {
-        console.log(e.target.checked);
-
         onClickShareCallback(sharable.contentId);
     };
 
@@ -20,7 +18,7 @@ const ContentLinkContainer = ({ title, sharable, onClickShareCallback }) => {
                 </div>
                 <div className='col-2'>
                     <div className='form-check form-switch'>
-                        <input className="form-check-input" type="checkbox" id="userProfileSharableCheck" onClick={onClickShareContent} />
+                        <input className="form-check-input" type="checkbox" id="userProfileSharableCheck" onClick={onClickShareContent} checked={sharable.shared} />
                         <label className="form-check-label" for="userProfileSharableCheck">Share</label>
                     </div>
                 </div>
@@ -30,7 +28,7 @@ const ContentLinkContainer = ({ title, sharable, onClickShareCallback }) => {
                     <div className='col-10'>
                         <code className='admin-code-font'>
                         {
-                            !sharable ? "-" : sharable.contentLink
+                            sharable.shared ? sharable.contentLink : "-"
                         }
                         </code>
                     </div>
