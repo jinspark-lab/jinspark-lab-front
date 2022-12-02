@@ -16,8 +16,8 @@ const LocalLoginBox = ({ loginHandler }) => {
     }, []);
 
     return (
-        <div>
-            <button className='btn btn-success' onClick={oauth2Login}>Login Local</button>
+        <div className='d-grid gap-2 p-1'>
+            <button className='btn btn-outline-success' onClick={oauth2Login}>Login Local</button>
         </div>
     )
 };

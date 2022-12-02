@@ -24,13 +24,14 @@ const Main = () => {
                 ...prevState,
                 login: true
             }));
-        }
+        },
+        external: window.location.pathname.indexOf('/share/') == 0
     });
 
     useEffect(()=> {
     }, [authState.login]);
 
-    if (!authState.login) {
+    if (!authState.login && !authState.external) {
         return (
             <LoginView loginHandler={authState.loginHandler}></LoginView>
         )

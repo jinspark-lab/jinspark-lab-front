@@ -51,6 +51,7 @@ const HomePage = () => {
             fetchLab();
         }
     };
+
     const renderContent = () => {
         switch (menu) {
             case 0:

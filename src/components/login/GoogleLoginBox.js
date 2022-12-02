@@ -20,7 +20,7 @@ const GoogleLoginBox = ({ loginHandler }) => {
     }, []);
 
     return (
-        <div>
+        <div className='d-grid gap-2 p-1'>
             <div id="g_id_onload"
                 data-client_id={clientId}
                 data-callback='signInCallback'

@@ -6,17 +6,19 @@ import ArchitecturePage from './architecture/ArchitecturePage';
 import AdminPage from './admin/AdminPage';
 import UserAppPage from './userapp/UserAppPage';
 import UserAppContentView from './userapp/UserAppContentView';
+import SharePageView from './share/SharePageView';
 import NotFoundView from '../components/NotFoundView';
 
 const Router = () => {
     return (
-        <Routes>
+        <Routes >
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/algorithm" element={<AlgorithmPage />}></Route>
             <Route path="/architecture" element={<ArchitecturePage />}></Route>
             <Route path="/userapp" element={<UserAppPage />}></Route>
             <Route path="/userapp/:appId" element={<UserAppContentView />}></Route>
             <Route path="/admin" element={<AdminPage />}></Route>
+            <Route path="/share/*" element={<SharePageView />}></Route>
             <Route path="/*" element={<NotFoundView />}></Route>
         </Routes>
     )

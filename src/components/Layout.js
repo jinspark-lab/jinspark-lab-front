@@ -5,9 +5,7 @@ const Layout = ({ pageMenu, pageRouter }) => {
     return (
         <div className='container-lg'>
             <div className='row'>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    { pageMenu }
-                </nav>
+                { pageMenu }
             </div>
             <div className='layout-content row'>
                 { pageRouter }

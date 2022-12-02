@@ -8,10 +8,15 @@ import '../styles/Login.css';
 
 const LoginView = ({ loginHandler }) => {
     const renderLoginButton = () => {
-        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-            return <LocalLoginBox loginHandler={loginHandler} />
-        }
-        return <GoogleLoginBox loginHandler={loginHandler} />
+        return (
+            <div>
+                {
+                    (!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
+                    ? <LocalLoginBox loginHandler={loginHandler} /> : <div></div>
+                }
+                <GoogleLoginBox loginHandler={loginHandler} />
+            </div>
+        )
     }
 
     useEffect(()=> {
