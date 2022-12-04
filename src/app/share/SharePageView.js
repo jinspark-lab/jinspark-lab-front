@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../module/Api';
+import axios from "axios";
+import LoadingView from '../../components/LoadingView';
 
 const SharePageView = () => {
-    const [menu, setMenu] = useState(0);
+    const [contentId, setContentId] = useState(window.location.pathname.substr(window.location.pathname.lastIndexOf('/')).substring(1));
     const [content, setContent] = useState(null);
 
     const onClickLink = (id) => {
@@ -10,13 +11,14 @@ const SharePageView = () => {
     };
 
     const fetchContentUrl = async () => {
-        const response = await api.get(process.env.REACT_APP_API_URL + '/content/' + window.location.pathname);
-        // const contentResponse = await.api.post(response.data.contentUrl)
+        const response = await axios.get(process.env.REACT_APP_ROUTE_API_URL + '/content/' + contentId);
+        console.log(response.data);
         setContent(response.data);
     };
 
     useEffect(() => {
-        // fetchContentUrl();
+        console.log(contentId);
+        fetchContentUrl();
     }, []);
 
     return (
@@ -29,9 +31,11 @@ const SharePageView = () => {
                 <button type='click' className='btn btn-primary btn-sm' onClick={onClickLink}>Go to the Main Lab-Page</button>
                 </p>
             </div>
-
             <div  style={{'background': 'ghostwhite'}}>
-                External content
+                {
+                    !content ? <LoadingView /> :
+                    content.contentUrl
+                }
             </div>
         </div>
     )
