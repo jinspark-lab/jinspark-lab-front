@@ -27,23 +27,31 @@ const AppMenu = () => {
         <div className='container'>
         {
             !authenticated() ? <div></div> :
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light">
                 <div className='col-2'>
-                    <Link to="/" className='navbar-brand'>JinsparkLab</Link>
+                    <Link to="/" className='navbar-brand' >
+                        JinsparkLab
+                    </Link>
                 </div>
-                <div className='col-6'>
+                <div className='col-6' >
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className='navbar-nav'>
+                        <ul className='navbar-nav '>
                             <li className='navbar-item'>
-                                <Link to="/" className='nav-link active'>Home</Link>
+                                <Link to="/" className='nav-link active'>
+                                    <h5 style={{'font-family': 'gill sans !important'}}>Home</h5>
+                                </Link>
                             </li>
                             <li className='navbar-item'>
-                                <Link to="/userapp" className='nav-link active'>UserApp</Link>
+                                <Link to="/userapp" className='nav-link active'>
+                                    <h5 style={{'font-family': 'gill sans !important'}}>UserApp</h5>
+                                </Link>
                             </li>
                             {
                                 adminAvailable() ?
                                 <li className='navbar-item'>
-                                    <Link to='/admin' className='nav-link'>Admin</Link>
+                                    <Link to='/admin' className='nav-link'>
+                                        <h5 style={{'font-family': 'gill sans !important'}}>Admin</h5>
+                                    </Link>
                                 </li> :
                                 <li></li>
                             }

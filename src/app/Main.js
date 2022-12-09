@@ -9,6 +9,7 @@ import Page from '../components/Page';
 import Layout from '../components/Layout';
 import AppMenu from './AppMenu';
 import Router from './Router';
+import EntranceView from './EntranceView';
 import LoginView from './LoginView';
 
 const Main = () => {
@@ -33,7 +34,9 @@ const Main = () => {
 
     if (!authState.login && !authState.external) {
         return (
-            <LoginView loginHandler={authState.loginHandler}></LoginView>
+            <EntranceView loginView={
+                <LoginView loginHandler={authState.loginHandler} />
+            } />
         )
     }
     return (
