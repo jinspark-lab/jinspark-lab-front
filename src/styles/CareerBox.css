@@ -11,6 +11,8 @@
 .career-text {
     padding: 5px;
     margin-bottom: 0.25rem !important;
+    white-space: pre-line;
+    line-height: 2em;
 }
 
 .career-date {

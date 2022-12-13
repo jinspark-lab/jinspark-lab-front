@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CareerBox from '../../components/home/CareerBox';
 import SkillBadge from '../../components/home/SkillBadge';
+import '../../styles/ProfileView.css';
 
-const ProfileContentView = ({userProfile}) => {
-
+const ProfileContentView = ({ userProfile }) => {
+    useEffect(() => {
+    }, []);
     return (
         <div className="card">
             <div className="card-body">
@@ -16,7 +18,7 @@ const ProfileContentView = ({userProfile}) => {
                         <div className="card-body">
                             <h4 className="card-title">{userProfile.name}</h4>
                             <h5 className="card-text">{userProfile.title}</h5>
-                            <p className="card-text p-2" style={{textAlign: 'left'}}>{userProfile.description}</p>
+                            <p className="card-text p-2 profile-desc-text">{userProfile.description}</p>
                             <div className='row'>
                                 <div className='col-6 App-box'>
                                     <p className="card-text font-monospace">&#128231;{userProfile.contactEmail}</p>

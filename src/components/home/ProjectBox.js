@@ -6,7 +6,7 @@ const ProjectBox = ({ description }) => {
     return (
         <div>
             <p><span>&#9989;&nbsp;</span>
-            { description }</p>
+            <strong>{ description }</strong></p>
         </div>
     );
 };

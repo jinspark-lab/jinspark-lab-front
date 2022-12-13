@@ -8,10 +8,10 @@ const CareerBox = ({ jobTitle, company, desc, startDate, endDate, projectList })
         <div className="career-box">
             <div className="row">
                 <div className="col-6">
-                    <h5 className="career-text">{ jobTitle }</h5>
+                    <h4 className="career-text">{ jobTitle }</h4>
                 </div>
                 <div className="col-6">
-                    <h5 className="career-text">{ company }</h5>
+                    <h4 className="career-text">{ company }</h4>
                 </div>
             </div>
             <div className="career-date">
@@ -26,11 +26,15 @@ const CareerBox = ({ jobTitle, company, desc, startDate, endDate, projectList })
             </div>
             <div className="row">
                 <div className="col-2">
-                    <center>&#128214; Projects</center>
+                    <center>
+                    <h5>
+                        &#128214; Projects
+                    </h5>
+                    </center>
                 </div>
                 <div className="col-10">
                     {
-                        projectList.map(project => 
+                        projectList.map(project =>
                             <ProjectBox key={project.projectId} description={project.description} />
                             )
                     }
