@@ -7,7 +7,7 @@ import '../../styles/Login.css';
 const GoogleLoginBox = ({ loginHandler }) => {
     const gscript = useScript('https://accounts.google.com/gsi/client', () => {
     });
-    const clientId = '122046664308-1gslgg7fm1i1eaahqpip5qgrt2raif8d.apps.googleusercontent.com';
+    const clientId = '122046664308-bct2d9qfnrmbgeic47le0p0d0sca7hoj.apps.googleusercontent.com';
 
     useEffect(()=> {
         window.signInCallback = async (res) => {
