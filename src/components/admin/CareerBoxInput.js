@@ -52,6 +52,12 @@ const CareerBoxInput = ({ careerId, userCareer, onChange, onDelete }) => {
         }));
     };
     const handleCurrentJob = (e) => {
+        if (e.target.checked) {
+            setCareerObject(prevState=> ({
+                ...prevState,
+                careerEnd: null
+            }));
+        }
         setCurrentJob(e.target.checked);
     };
 
@@ -104,7 +110,7 @@ const CareerBoxInput = ({ careerId, userCareer, onChange, onDelete }) => {
                 </div>
                 <div className="col-6">
                     <label className='admin-label' htmlFor='company'>Company</label>
-                    <input type='text' className='form-control' id='company' 
+                    <input type='text' className='form-control' id='company'
                     value={careerObject.company} onChange={handleCompany}/>
                 </div>
             </div>
@@ -121,7 +127,7 @@ const CareerBoxInput = ({ careerId, userCareer, onChange, onDelete }) => {
                         checked={currentJob} onChange={handleCurrentJob} id='currentJobCheckbox'></input>
                     </div>
                     {
-                        currentJob === true ? 
+                        currentJob === true ?
                         <div>MyCurrentJob</div>
                         :
                         <DatePicker className='form-control' dateFormat='yyyy/MM/dd'
@@ -146,7 +152,7 @@ const CareerBoxInput = ({ careerId, userCareer, onChange, onDelete }) => {
                 </div>
                 <div className="col-10">
                     {
-                        careerObject.userProjectList.map(project => 
+                        careerObject.userProjectList.map(project =>
                             <ProjectBoxInput key={project.projectId} projectId={project.projectId}
                             userProject={project}
                             onChange={changeProject} onDelete={deleteProject} />
