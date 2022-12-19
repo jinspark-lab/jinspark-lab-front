@@ -6,6 +6,12 @@ const ContentLinkContainer = ({ title, sharable, onClickShareCallback }) => {
         onClickShareCallback(sharable.contentId);
     };
 
+    const onClickCopyToClipboard = () => {
+        if (sharable.shared) {
+            navigator.clipboard.writeText(window.location.origin + sharable.contentLink);
+        }
+    };
+
     useEffect(() => {
 
     }, []);
@@ -28,12 +34,12 @@ const ContentLinkContainer = ({ title, sharable, onClickShareCallback }) => {
                     <div className='col-10'>
                         <code className='admin-code-font'>
                         {
-                            sharable.shared ? sharable.contentLink : "-"
+                            sharable.shared ? window.location.origin + sharable.contentLink : "-"
                         }
                         </code>
                     </div>
                     <div className='col-2'>
-                        <button type="button" className="btn btn-outline-primary btn-sm">Copy Link</button>
+                        <button type="button" className="btn btn-outline-primary btn-sm" onClick={onClickCopyToClipboard}>Copy Link</button>
                     </div>
                 </div>
             </div>

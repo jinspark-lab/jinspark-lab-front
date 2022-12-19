@@ -20,7 +20,8 @@ const SharePageView = () => {
             setErrorModal(true);
         } else {
             setContent(response.data);
-            axios.get(response.data.contentUrl, {
+            const path = response.data.contentUrl.substring(response.data.contentUrl.indexOf('/', 2));
+            axios.get(process.env.REACT_APP_GATE_API_URL + path, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import api from '../../module/Api';
 import ContentLinkContainer from '../../components/admin/ContentLinkContainer';
 import LoadingView from '../../components/LoadingView';
+import ModalView from '../../components/ModalView';
 import '../../styles/AdminPage.css';
 
 const SharableContainer = () => {
+    const navigate = useNavigate();
     const [sharableContent, setSharableContent] = useState(null);
+    const [submitModal, setSubmitModal] = useState(false);
 
     const onClickShareProfile = (contentId) => {
         setSharableContent(prevState => ({
@@ -29,7 +33,6 @@ const SharableContainer = () => {
     };
 
     const onClickSubmit = (e) => {
-        console.log(sharableContent);
         api.post('/api/content/update', sharableContent, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,11 +43,22 @@ const SharableContainer = () => {
         }).catch(error => {
             console.error(error);
         }).finally(() => {
+            setSubmitModal(true);
         });
     };
 
+
+    const submitModalContent = {
+        title: 'Information',
+        text: 'Successfully Updated!'
+    }
+
+    const onClickSubmitModalSubmit = () => {
+        setSubmitModal(false);
+        navigate('/admin');
+    };
+
     const fetchSharableList = () => {
-        console.log("Fetch Sharable List");
         const sampleRequestBody = {
 
         };
@@ -78,15 +92,17 @@ const SharableContainer = () => {
             <div className='my-3 p-3 bg-white rounded box-shadow'>
                 <h5 className='border-bottom border-grey pb-2 mb-0'>User App</h5>
                 {
-                    (!sharableContent || !sharableContent.userAppSharableList) ? <div className='p-3'><LoadingView /></div>
+                    (!sharableContent) ? <div className='p-3'><LoadingView /></div>
+                    : ((!sharableContent.userAppSharableList) ? <div className='p-3'>No App to display</div>
                     : sharableContent.userAppSharableList.map(userAppSharable =>
-                    <ContentLinkContainer title={userAppSharable.appId} sharable={userAppSharable} onClickShareCallback={onClickShareUserApp} />)
+                    <ContentLinkContainer title={userAppSharable.appId} sharable={userAppSharable} onClickShareCallback={onClickShareUserApp} />))
                 }
             </div>
 
             <div className='admin-form-button'>
                 <button type='submit' className='btn btn-primary admin-button' onClick={onClickSubmit}>Submit</button>
             </div>
+            <ModalView visible={submitModal} modalContent={submitModalContent} onClickSubmit={onClickSubmitModalSubmit} />
         </div>
     )
 };
