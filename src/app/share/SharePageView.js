@@ -4,6 +4,8 @@ import ProfileContentView from '../home/ProfileContentView';
 import LoadingView from '../../components/LoadingView';
 import ModalView from '../../components/ModalView';
 
+import { AwsRum, AwsRumConfig } from 'aws-rum-web';
+
 const SharePageView = () => {
     const [contentId, setContentId] = useState(window.location.pathname.substr(window.location.pathname.lastIndexOf('/')).substring(1));
     const [content, setContent] = useState(null);
@@ -12,6 +14,38 @@ const SharePageView = () => {
 
     const onClickLink = (id) => {
         window.location.href='/';
+    };
+
+    const initRUM = async () => {
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+            return ;
+        }
+        //AWS RUM
+        try {
+            const config: AwsRumConfig = {
+                sessionSampleRate: 1,
+                guestRoleArn: "arn:aws:iam::486403792456:role/RUM-Monitor-us-east-1-486403792456-8033575841761-Unauth",
+                identityPoolId: "us-east-1:049b3e66-1a9d-482f-b23e-9afcb93535e9",
+                endpoint: "https://dataplane.rum.us-east-1.amazonaws.com",
+                telemetries: ["performance","errors","http"],
+                allowCookies: true,
+                enableXRay: false
+            };
+
+            const APPLICATION_ID: string = '030c98d6-e3ab-417a-9095-a59c8083e78a';
+            const APPLICATION_VERSION: string = '1.0.0';
+            const APPLICATION_REGION: string = 'us-east-1';
+
+            const awsRum: AwsRum = new AwsRum(
+                APPLICATION_ID,
+                APPLICATION_VERSION,
+                APPLICATION_REGION,
+                config
+            );
+        } catch (e) {
+            // Ignore the error
+        }
+        //
     };
 
     const fetchContent = async () => {
@@ -67,6 +101,7 @@ const SharePageView = () => {
     };
 
     useEffect(() => {
+        initRUM();
         fetchContent();
     }, []);
 

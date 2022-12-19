@@ -42,7 +42,6 @@ const HomePage = () => {
         }
     };
     const onClickMenu = (id) => {
-        console.log("On Click Item : " + id);
         setContent(null);
         setMenu(id);
         if (id === 0) {
