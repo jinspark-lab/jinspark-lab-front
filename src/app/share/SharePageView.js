@@ -3,6 +3,7 @@ import axios from "axios";
 import ProfileContentView from '../home/ProfileContentView';
 import LoadingView from '../../components/LoadingView';
 import ModalView from '../../components/ModalView';
+import MarkdownView from '../../components/MarkdownView';
 
 import { AwsRum, AwsRumConfig } from 'aws-rum-web';
 
@@ -92,6 +93,10 @@ const SharePageView = () => {
             case "USER_APP":
                 return (
                     <div>User App</div>
+                )
+            case "BLOG":
+                return (
+                    <MarkdownView markdown={result} />
                 )
             default:
                 return (
