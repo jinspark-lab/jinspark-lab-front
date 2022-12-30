@@ -40,9 +40,7 @@ const ProfileContentView = ({ userProfile }) => {
             </div>
             <div className='row' >
                 <div className='col-2 App-box'>
-                    <p className="text-decoration-underline" style={{'font-family': 'gill sans !important'}}>
-                        <h4>Skills</h4>
-                    </p>
+                    <h4>Skills</h4>
                 </div>
                 <div className='col-10'>
                     <div className="row">
@@ -54,7 +52,7 @@ const ProfileContentView = ({ userProfile }) => {
                 </div>
             </div>
             <hr />
-            <div className='container p-2' style={{'text-align': 'left'}}>
+            <div className='container p-2' style={{'textAlign': 'left'}}>
 
                 {
                     userProfile.userCareerList.map(userCareer =>

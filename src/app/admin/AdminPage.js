@@ -3,6 +3,8 @@ import ItemListContainer from '../../components/common/ItemListContainer';
 import EditLabView from './EditLabView';
 import AddUserAppContainer from './AddUserAppContainer';
 import EditUserAppPage from './EditUserAppPage';
+import AddUserBlogContainer from './AddUserBlogContainer';
+import EditUserBlogPage from './EditUserBlogPage';
 import SettingsView from './SettingsView';
 import EditProfileContainer from './EditProfileContainer';
 import SharableContainer from './SharableContainer';
@@ -32,6 +34,14 @@ const AdminPage = () => {
             text: 'Edit/Remove App'
         },
         {
+            id: 5,
+            text: 'Add User Blog'
+        },
+        {
+            id: 6,
+            text: 'Edit/Remove Blog'
+        },
+        {
             id: 100,
             text: 'Settings'
         }
@@ -51,6 +61,10 @@ const AdminPage = () => {
                 return <AddUserAppContainer></AddUserAppContainer>
             case 4:
                 return <EditUserAppPage></EditUserAppPage>
+            case 5:
+                return <AddUserBlogContainer></AddUserBlogContainer>
+            case 6:
+                return <EditUserBlogPage></EditUserBlogPage>
             case 100:
                 return <SettingsView></SettingsView>
             default:

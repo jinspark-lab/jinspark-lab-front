@@ -38,19 +38,24 @@ const AppMenu = () => {
                         <ul className='navbar-nav '>
                             <li className='navbar-item'>
                                 <Link to="/" className='nav-link active'>
-                                    <h5 style={{'font-family': 'gill sans !important'}}>Home</h5>
+                                    <h5 >Home</h5>
                                 </Link>
                             </li>
                             <li className='navbar-item'>
                                 <Link to="/userapp" className='nav-link active'>
-                                    <h5 style={{'font-family': 'gill sans !important'}}>UserApp</h5>
+                                    <h5 >UserApp</h5>
+                                </Link>
+                            </li>
+                            <li className='navbar-item'>
+                                <Link to="/userblog" className='nav-link active'>
+                                    <h5 >UserBlog</h5>
                                 </Link>
                             </li>
                             {
                                 adminAvailable() ?
                                 <li className='navbar-item'>
                                     <Link to='/admin' className='nav-link'>
-                                        <h5 style={{'font-family': 'gill sans !important'}}>Admin</h5>
+                                        <h5 >Admin</h5>
                                     </Link>
                                 </li> :
                                 <li></li>

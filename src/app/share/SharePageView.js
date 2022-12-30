@@ -56,6 +56,7 @@ const SharePageView = () => {
         } else {
             setContent(response.data);
             const path = response.data.contentUrl.substring(response.data.contentUrl.indexOf('/', 2));
+            // console.log("Path : " + path);
             axios.get(process.env.REACT_APP_GATE_API_URL + path, {
                 headers: {
                     'Content-Type': 'application/json'

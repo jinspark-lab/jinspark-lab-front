@@ -16,7 +16,7 @@ const LocalLoginBox = ({ loginHandler }) => {
     }, []);
 
     return (
-        <div className='d-grid gap-2 p-1' style={{'justify-content': 'center'}}>
+        <div className='d-grid gap-2 p-1 justify-content-center'>
             <button className='btn btn-outline-success' onClick={oauth2Login}>I am Service Developer</button>
         </div>
     )

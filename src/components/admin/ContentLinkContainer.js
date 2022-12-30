@@ -24,8 +24,9 @@ const ContentLinkContainer = ({ title, sharable, onClickShareCallback }) => {
                 </div>
                 <div className='col-2'>
                     <div className='form-check form-switch'>
-                        <input className="form-check-input" type="checkbox" id="userProfileSharableCheck" onClick={onClickShareContent} checked={sharable.shared} />
-                        <label className="form-check-label" for="userProfileSharableCheck">Share</label>
+                        <input className="form-check-input" type="checkbox" id="userProfileSharableCheck"
+                                onChange={onClickShareContent} checked={sharable.shared} />
+                        <label className="form-check-label" htmlFor="userProfileSharableCheck">Share</label>
                     </div>
                 </div>
             </div>

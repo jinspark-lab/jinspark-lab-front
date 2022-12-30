@@ -32,6 +32,20 @@ const SharableContainer = () => {
         }));
     };
 
+    const onClickShareUserBlog = (contentId) => {
+        var newList = sharableContent.userBlogSharableList.map(userBlogSharable => {
+            let newUserBlogSharable = userBlogSharable;
+            if (userBlogSharable.contentId === contentId) {
+                newUserBlogSharable.shared = !userBlogSharable.shared;
+            }
+            return newUserBlogSharable;
+        });
+        setSharableContent(prevState => ({
+            ...prevState,
+            userBlogSharableList: newList
+        }));
+    };
+
     const onClickSubmit = (e) => {
         api.post('/api/content/update', sharableContent, {
                 headers: {
@@ -46,7 +60,6 @@ const SharableContainer = () => {
             setSubmitModal(true);
         });
     };
-
 
     const submitModalContent = {
         title: 'Information',
@@ -96,6 +109,16 @@ const SharableContainer = () => {
                     : ((!sharableContent.userAppSharableList) ? <div className='p-3'>No App to display</div>
                     : sharableContent.userAppSharableList.map(userAppSharable =>
                     <ContentLinkContainer title={userAppSharable.appId} sharable={userAppSharable} onClickShareCallback={onClickShareUserApp} />))
+                }
+            </div>
+
+            <div className='my-3 p-3 bg-white rounded box-shadow'>
+                <h5 className='border-bottom border-grey pb-2 mb-0'>User Blog</h5>
+                {
+                    (!sharableContent) ? <div className='p-3'><LoadingView /></div>
+                    : ((!sharableContent.userBlogSharableList) ? <div className='p-3'>No Blog to display</div>
+                    : sharableContent.userBlogSharableList.map(userBlogSharable =>
+                    <ContentLinkContainer title={userBlogSharable.blogId} sharable={userBlogSharable} onClickShareCallback={onClickShareUserBlog} />))
                 }
             </div>
 

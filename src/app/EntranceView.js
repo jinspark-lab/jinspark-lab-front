@@ -9,7 +9,7 @@ const EntranceView = ({ loginView }) => {
     }, []);
 
     return (
-        <div className='container' style={{'background-color': 'rgb(251, 251, 251)'}}>
+        <div className='container' style={{'backgroundColor': 'rgb(251, 251, 251)'}}>
             <div className='carousel slide'>
                 <div className='carousel-inner'>
                     <div className='carousel-item active'>

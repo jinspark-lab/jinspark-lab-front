@@ -5,9 +5,6 @@ import '../../styles/AdminPage.css';
 const AddUserAppView = ({ content, errorStates, handlers }) => {
     return (
         <div>
-            <div>
-                AddUserAppView
-            </div>
             <div className='admin-page'>
                     <div className='form-group admin-form'>
                         <label className='form-label' htmlFor='appId'>App Name</label>
