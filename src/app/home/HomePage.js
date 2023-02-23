@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../module/Api';
 import ItemListContainer from '../../components/common/ItemListContainer';
 import ProfileContentView from './ProfileContentView';
@@ -20,8 +20,7 @@ const HomePage = () => {
         }
     ];
 
-    const fetchProfile = useCallback(async () => {
-        setContent(null);
+    const fetchProfile = async () => {
         try {
             const response = await api.post('/api/profile', {
             });
@@ -29,18 +28,19 @@ const HomePage = () => {
         } catch (e) {
             console.log(e);
         }
-    }, []);
-    const fetchLab = useCallback(async () => {
-        setContent(null);
+    };
+    const fetchLab = async () => {
         try {
             const response = await api.post('/api/lab');
             setContent(response.data);
+            console.log("Fetched");
         } catch (e) {
             console.log(e);
         }
-    }, []);
+    };
 
     const onClickMenu = (id) => {
+        setContent(null);
         setMenu(id);
     };
 
@@ -61,7 +61,7 @@ const HomePage = () => {
         } else {
             fetchLab();
         }
-    }, []);
+    }, [menu]);
 
     return (
         <div className='row'>
