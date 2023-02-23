@@ -26,7 +26,7 @@ const Main = () => {
                 login: true
             }));
         },
-        external: window.location.pathname.indexOf('/share/') == 0
+        external: window.location.pathname.indexOf('/share/') === 0
     });
 
     useEffect(()=> {

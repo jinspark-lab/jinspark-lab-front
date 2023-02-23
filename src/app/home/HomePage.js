@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import api from '../../module/Api';
-import jwt_decode from 'jwt-decode';
-import cookie from '../../module/Cookie';
 import ItemListContainer from '../../components/common/ItemListContainer';
 import ProfileContentView from './ProfileContentView';
 import LoadingView from '../../components/LoadingView';
@@ -10,9 +8,6 @@ import LabContentView from './LabContentView';
 const HomePage = () => {
     const [content, setContent] = useState(null);
     const [menu, setMenu] = useState(0);
-    // const token = sessionStorage.getItem('token');
-    // const decoded = jwt_decode(token);
-    // const userId = decoded.userId;
 
     const items = [
         {
@@ -24,7 +19,9 @@ const HomePage = () => {
             text: 'About this Lab'
         }
     ];
-    const fetchProfile = async () => {
+
+    const fetchProfile = useCallback(async () => {
+        setContent(null);
         try {
             const response = await api.post('/api/profile', {
             });
@@ -32,23 +29,19 @@ const HomePage = () => {
         } catch (e) {
             console.log(e);
         }
-    };
-    const fetchLab = async () => {
+    }, []);
+    const fetchLab = useCallback(async () => {
+        setContent(null);
         try {
             const response = await api.post('/api/lab');
             setContent(response.data);
         } catch (e) {
             console.log(e);
         }
-    };
+    }, []);
+
     const onClickMenu = (id) => {
-        setContent(null);
         setMenu(id);
-        if (id === 0) {
-            fetchProfile();
-        } else {
-            fetchLab();
-        }
     };
 
     const renderContent = () => {
@@ -68,7 +61,7 @@ const HomePage = () => {
         } else {
             fetchLab();
         }
-    }, [menu]);
+    }, []);
 
     return (
         <div className='row'>

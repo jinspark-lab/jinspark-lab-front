@@ -1,7 +1,4 @@
 import React, { useEffect } from 'react';
-import useScript from '../hooks/UseScript';
-import api from '../module/Api';
-import cookie from '../module/Cookie';
 import LocalLoginBox from '../components/login/LocalLoginBox';
 import GoogleLoginBox from '../components/login/GoogleLoginBox';
 import '../styles/Login.css';
