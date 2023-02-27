@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
 import api from '../../module/Api';
-import cookie from '../../module/Cookie';
 import '../../styles/Login.css';
 
 const LocalLoginBox = ({ loginHandler }) => { 
