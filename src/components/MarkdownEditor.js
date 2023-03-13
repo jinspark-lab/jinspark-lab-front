@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 
 // Single Item represent text
 const MarkdownEditor = ({ value, setValue }) => {
-    // const [content, setContent] = useState("**Hello World!**");
     useEffect(()=> {
     }, []);
     return (
@@ -12,6 +11,7 @@ const MarkdownEditor = ({ value, setValue }) => {
                 <MDEditor
                   value={value}
                   onChange={setValue}
+                  height={650}
                 />
             </div>
         </div>
