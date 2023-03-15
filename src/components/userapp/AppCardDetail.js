@@ -22,14 +22,14 @@ const AppCardDetail = ({ userAppDetail }) => {
             <div className='row'>
                 <h5 className='p-2'>Overview</h5>
                 <img src={userAppDetail.appPicture} className='img-fluid p-2'></img>
-                <p className='font-monospace p-2'>
+                <p className='font-monospace p-2' style={{whiteSpace: 'pre-wrap'}}>
                 {userAppDetail.introText}
                 </p>
             </div>
             <div className='row'>
                 <h5 className='p-2'>Design</h5>
                 <img src={userAppDetail.architectureUrl} className='img-fluid p-2'></img>
-                <p className='font-monospace p-2'>
+                <p className='font-monospace p-2' style={{whiteSpace: 'pre-wrap'}}>
                 {userAppDetail.description}
                 </p>
             </div>

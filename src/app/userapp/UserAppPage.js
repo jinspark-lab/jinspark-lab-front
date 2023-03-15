@@ -9,8 +9,6 @@ const UserAppPage = () => {
     const navigate = useNavigate();
     const [userAppShortcuts, setUserAppShortcuts] = useState(null);
 
-    // const imgUrl = 'https://d26rx9t37cawwe.cloudfront.net/lab_arch.png';
-
     const onClickCard = (id) => {
         navigate('/userapp/' + id, {
             state: {

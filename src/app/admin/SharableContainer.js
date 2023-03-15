@@ -108,7 +108,8 @@ const SharableContainer = () => {
                     (!sharableContent) ? <div className='p-3'><LoadingView /></div>
                     : ((!sharableContent.userAppSharableList) ? <div className='p-3'>No App to display</div>
                     : sharableContent.userAppSharableList.map(userAppSharable =>
-                    <ContentLinkContainer title={userAppSharable.appId} sharable={userAppSharable} onClickShareCallback={onClickShareUserApp} />))
+                    <ContentLinkContainer key={userAppSharable.appId} title={userAppSharable.appId} 
+                    sharable={userAppSharable} onClickShareCallback={onClickShareUserApp} />))
                 }
             </div>
 
@@ -118,7 +119,8 @@ const SharableContainer = () => {
                     (!sharableContent) ? <div className='p-3'><LoadingView /></div>
                     : ((!sharableContent.userBlogSharableList) ? <div className='p-3'>No Blog to display</div>
                     : sharableContent.userBlogSharableList.map(userBlogSharable =>
-                    <ContentLinkContainer title={userBlogSharable.blogId} sharable={userBlogSharable} onClickShareCallback={onClickShareUserBlog} />))
+                    <ContentLinkContainer key={userBlogSharable.blogId} title={userBlogSharable.blogId} 
+                    sharable={userBlogSharable} onClickShareCallback={onClickShareUserBlog} />))
                 }
             </div>
 

@@ -7,6 +7,7 @@ const AppCardContainer = ({ inputCards, onClickHandler, onImgErrorHandler }) => 
         ({appId, thumbnailUrl}) => (
             <AppCard
             id={appId}
+            thumbnailUrl={thumbnailUrl}
             onClickHandler={onClickHandler}
             onImgErrorHandler={onImgErrorHandler}
             key={appId}

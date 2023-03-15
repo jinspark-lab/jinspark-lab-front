@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from '../../styles/Item.module.css';
 
-const AppCard = ({ id, onClickHandler, onImgErrorHandler }) => {
+const AppCard = ({ id, thumbnailUrl, onClickHandler, onImgErrorHandler }) => {
     return (
         <div className='col-md-4'>
             <div className='card mb-4 box-shadow' onClick={() => onClickHandler(id)}>
-                <img className='card-img-top' src="..." alt='UserAppImage'
+                <img className='card-img-top' src={thumbnailUrl} alt='UserAppImage'
                     style={{'width': '100%', 'height': '255px', 'display': 'block'}}
                     onError={onImgErrorHandler}
                     />

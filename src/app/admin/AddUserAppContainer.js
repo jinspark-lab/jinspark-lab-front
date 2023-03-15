@@ -134,7 +134,6 @@ const AddUserAppContainer = () => {
                 }
             }
         ).then(response => {
-            console.log(response);
             //TODO: Make Additional Page to inform
             setSubmitModal(true);
             setCancelModal(false);
